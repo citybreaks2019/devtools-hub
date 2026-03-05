@@ -24,7 +24,7 @@
             line-height: 1.6;
         }
         
-        /* Header with Home Button */
+        /* Header with Hamburger Menu */
         .site-header {
             background: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -41,37 +41,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .home-button {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .home-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
-            border-color: white;
-        }
-        
-        .home-button .home-icon {
-            font-size: 1.3em;
+            position: relative;
         }
         
         .site-title {
@@ -83,7 +53,154 @@
             background-clip: text;
         }
         
-        /* Tools Section - Now at TOP */
+        /* Hamburger Menu Button */
+        .hamburger-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .hamburger-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .hamburger-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            width: 300px;
+            padding: 15px 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1001;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .dropdown-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-header {
+            padding: 0 20px 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .dropdown-header h3 {
+            color: #667eea;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        .dropdown-header p {
+            color: #64748b;
+            font-size: 0.85em;
+            margin-top: 5px;
+        }
+        
+        .dropdown-section {
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .dropdown-section:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-title {
+            padding: 5px 20px;
+            color: #64748b;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+        
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 20px;
+            color: #1e293b;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .dropdown-item:hover {
+            background: #f8fafc;
+            padding-left: 25px;
+        }
+        
+        .dropdown-item .item-icon {
+            font-size: 1.2em;
+            width: 24px;
+            text-align: center;
+        }
+        
+        .dropdown-item .item-text {
+            flex: 1;
+        }
+        
+        .dropdown-item .item-badge {
+            background: #e2e8f0;
+            color: #64748b;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+        
+        /* Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Tools Section */
         .tools-section {
             padding: 60px 0 40px;
             background: #f8fafc;
@@ -187,7 +304,173 @@
             font-weight: 500;
         }
         
-        /* Hero Section - Now BELOW tools */
+        /* Professional Banner - NEW */
+        .pro-banner {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            color: white;
+            padding: 40px 0;
+            position: relative;
+            overflow: hidden;
+            border-top: 4px solid #667eea;
+            border-bottom: 4px solid #764ba2;
+        }
+        
+        .pro-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveStars 20s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes moveStars {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .banner-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .banner-content {
+            animation: slideInLeft 1s ease;
+        }
+        
+        .banner-content h3 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ffd700, #ffa500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .banner-content p {
+            font-size: 1.1em;
+            color: #cbd5e1;
+            margin-bottom: 25px;
+            max-width: 500px;
+        }
+        
+        .banner-features {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .banner-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .banner-feature span {
+            color: #ffd700;
+            font-weight: 600;
+        }
+        
+        .banner-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            animation: slideInRight 1s ease;
+        }
+        
+        .banner-stat-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .banner-stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.1);
+            border-color: #667eea;
+        }
+        
+        .banner-stat-number {
+            font-size: 2.5em;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .banner-stat-label {
+            color: #94a3b8;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .banner-cta {
+            margin-top: 20px;
+        }
+        
+        .banner-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .banner-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            border-color: #ffd700;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        /* Hero Section */
         .hero {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #9f7aea 100%);
             color: white;
@@ -261,7 +544,6 @@
             letter-spacing: 1px;
         }
         
-        /* Explore Button - Fixed */
         .explore-btn {
             display: inline-block;
             padding: 15px 40px;
@@ -301,12 +583,12 @@
             background: white;
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
         }
         
         .feature-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
-            transition: all 0.3s ease;
         }
         
         .feature-icon {
@@ -467,7 +749,7 @@
         .footer-col ul li a {
             color: #cbd5e1;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
         }
         
         .footer-col ul li a:hover {
@@ -504,7 +786,7 @@
             font-size: 1.5em;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             transition: all 0.3s ease;
-            z-index: 999;
+            z-index: 998;
         }
         
         .back-to-top:hover {
@@ -515,8 +797,20 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-container {
-                flex-direction: column;
-                gap: 15px;
+                padding: 0 15px;
+            }
+            
+            .banner-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .banner-content p {
+                margin: 0 auto 25px;
+            }
+            
+            .banner-features {
+                justify-content: center;
             }
             
             .hero h1 {
@@ -540,25 +834,91 @@
                 font-size: 2em;
             }
             
-            .tools-section {
-                padding: 40px 0 20px;
+            .dropdown-menu {
+                width: 280px;
+                right: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header with Home Button -->
+    <!-- Header with Hamburger Menu -->
     <header class="site-header">
         <div class="header-container">
-            <div class="logo">
-                <span class="site-title">DevTools Hub</span>
+            <div class="site-title">DevTools Hub</div>
+            
+            <!-- Hamburger Button (三) -->
+            <button class="hamburger-btn" id="hamburgerBtn">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            
+            <!-- Dropdown Menu -->
+            <div class="dropdown-menu" id="dropdownMenu">
+                <div class="dropdown-header">
+                    <h3>✨ Quick Navigation</h3>
+                    <p>Tools & Features</p>
+                </div>
+                
+                <div class="dropdown-section">
+                    <div class="dropdown-title">🔧 TOOLS</div>
+                    <a href="password-generator.html" class="dropdown-item">
+                        <span class="item-icon">🔐</span>
+                        <span class="item-text">Password Generator</span>
+                        <span class="item-badge">New</span>
+                    </a>
+                    <a href="json-formatter.html" class="dropdown-item">
+                        <span class="item-icon">🔄</span>
+                        <span class="item-text">JSON Formatter</span>
+                    </a>
+                    <a href="base64.html" class="dropdown-item">
+                        <span class="item-icon">🔤</span>
+                        <span class="item-text">Base64 Encoder</span>
+                    </a>
+                    <a href="word-counter.html" class="dropdown-item">
+                        <span class="item-icon">📝</span>
+                        <span class="item-text">Word Counter</span>
+                    </a>
+                </div>
+                
+                <div class="dropdown-section">
+                    <div class="dropdown-title">📄 PAGES</div>
+                    <a href="index.html" class="dropdown-item">
+                        <span class="item-icon">🏠</span>
+                        <span class="item-text">Home</span>
+                    </a>
+                    <a href="about.html" class="dropdown-item">
+                        <span class="item-icon">📖</span>
+                        <span class="item-text">About Us</span>
+                    </a>
+                    <a href="contact.html" class="dropdown-item">
+                        <span class="item-icon">📬</span>
+                        <span class="item-text">Contact</span>
+                    </a>
+                </div>
+                
+                <div class="dropdown-section">
+                    <div class="dropdown-title">⚖️ LEGAL</div>
+                    <a href="privacy.html" class="dropdown-item">
+                        <span class="item-icon">🔒</span>
+                        <span class="item-text">Privacy Policy</span>
+                    </a>
+                    <a href="terms.html" class="dropdown-item">
+                        <span class="item-icon">📜</span>
+                        <span class="item-text">Terms of Use</span>
+                    </a>
+                    <a href="cookies.html" class="dropdown-item">
+                        <span class="item-icon">🍪</span>
+                        <span class="item-text">Cookie Policy</span>
+                    </a>
+                </div>
             </div>
-            <a href="index.html" class="home-button">
-                <span class="home-icon">🏠</span>
-                <span>Home</span>
-            </a>
         </div>
     </header>
+    
+    <!-- Overlay -->
+    <div class="menu-overlay" id="menuOverlay"></div>
 
     <!-- Tools Section - NOW AT THE TOP -->
     <section class="tools-section" id="tools">
@@ -600,13 +960,56 @@
         </div>
     </section>
 
-    <!-- Hero Section - NOW BELOW TOOLS -->
+    <!-- PROFESSIONAL BANNER - NEW (Placed below tools) -->
+    <section class="pro-banner">
+        <div class="banner-container">
+            <div class="banner-content">
+                <h3>🚀 Developer's Choice 2026</h3>
+                <p>Join thousands of developers who trust DevTools Hub for their daily workflow. 100% free, privacy-first, and built for professionals.</p>
+                <div class="banner-features">
+                    <div class="banner-feature">
+                        <span>✓</span> No Registration
+                    </div>
+                    <div class="banner-feature">
+                        <span>✓</span> Zero Tracking
+                    </div>
+                    <div class="banner-feature">
+                        <span>✓</span> Instant Results
+                    </div>
+                </div>
+                <div class="banner-cta">
+                    <a href="#tools" class="banner-button">Start Building →</a>
+                </div>
+            </div>
+            
+            <div class="banner-stats">
+                <div class="banner-stat-card">
+                    <div class="banner-stat-number">10k+</div>
+                    <div class="banner-stat-label">Monthly Users</div>
+                </div>
+                <div class="banner-stat-card">
+                    <div class="banner-stat-number">4.9</div>
+                    <div class="banner-stat-label">User Rating</div>
+                </div>
+                <div class="banner-stat-card">
+                    <div class="banner-stat-number">0</div>
+                    <div class="banner-stat-label">Data Stored</div>
+                </div>
+                <div class="banner-stat-card">
+                    <div class="banner-stat-number">24/7</div>
+                    <div class="banner-stat-label">Availability</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>🛠️ <span>DevTools Hub</span></h1>
             <p class="hero-subtitle">Professional-grade developer tools, completely free and privacy-focused</p>
             
-            <!-- Fixed Explore All Tools Button - Scrolls to Tools -->
+            <!-- Fixed Explore All Tools Button -->
             <a href="#tools" class="explore-btn">✨ Explore All Tools</a>
             
             <div class="hero-stats">
@@ -762,5 +1165,55 @@
     
     <!-- Back to Top Button -->
     <a href="#" class="back-to-top" title="Back to Top">↑</a>
+
+    <!-- JavaScript for Hamburger Menu -->
+    <script>
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+
+        function toggleMenu() {
+            dropdownMenu.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            
+            // Animate hamburger lines
+            const lines = document.querySelectorAll('.hamburger-line');
+            if (dropdownMenu.classList.contains('active')) {
+                lines[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+                lines[1].style.opacity = '0';
+                lines[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+            } else {
+                lines[0].style.transform = 'none';
+                lines[1].style.opacity = '1';
+                lines[2].style.transform = 'none';
+            }
+        }
+
+        function closeMenu() {
+            dropdownMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            
+            // Reset hamburger lines
+            const lines = document.querySelectorAll('.hamburger-line');
+            lines[0].style.transform = 'none';
+            lines[1].style.opacity = '1';
+            lines[2].style.transform = 'none';
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+
+        // Close menu when clicking on any dropdown item (for mobile)
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', closeMenu);
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && dropdownMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    </script>
 </body>
-</html>
+    </html>
