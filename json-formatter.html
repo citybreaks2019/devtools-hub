@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Formatter & Validator - Free Online Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 15px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Super Stylish Round Back Button */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            padding: 14px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            border: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .back-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .back-button:hover {
+            transform: translateX(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(102, 126, 234, 0.4);
+            color: white;
+        }
+        
+        .back-button:hover::before {
+            opacity: 1;
+        }
+        
+        .back-button:active {
+            transform: translateX(-2px) scale(0.98);
+        }
+        
+        .back-icon {
+            font-size: 1.4em;
+            line-height: 1;
+            transition: transform 0.3s ease;
+        }
+        
+        .back-button:hover .back-icon {
+            transform: translateX(-5px);
+        }
+        
+        .back-text {
+            line-height: 1;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            font-family: monospace;
+            margin-bottom: 15px;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        button {
+            flex: 1;
+            min-width: 100px;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        .primary-btn {
+            background: #667eea;
+            color: white;
+        }
+        .secondary-btn {
+            background: #e2e8f0;
+            color: #333;
+        }
+        .output-area {
+            margin-top: 15px;
+        }
+        .error-message {
+            color: #e53e3e;
+            padding: 10px;
+            background: #fed7d7;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        .success-message {
+            color: #2f855a;
+            padding: 10px;
+            background: #c6f6d5;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            .back-button {
+                padding: 12px 20px;
+                font-size: 1em;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Fancy Round Back Button -->
+        <a href="index.html" class="back-button">
+            <span class="back-icon">←</span>
+            <span class="back-text">Back to Tools</span>
+        </a>
+        
+        <div class="tool-card">
+            <h1>🔄 JSON Formatter & Validator</h1>
+            
+            <textarea id="jsonInput" rows="6" placeholder='{"name": "John", "age": 30, "city": "New York"}'></textarea>
+            
+            <div class="button-group">
+                <button class="primary-btn" onclick="formatJSON()">Format JSON</button>
+                <button class="secondary-btn" onclick="minifyJSON()">Minify</button>
+                <button class="secondary-btn" onclick="validateJSON()">Validate</button>
+                <button class="secondary-btn" onclick="clearJSON()">Clear</button>
+            </div>
+            
+            <div class="output-area">
+                <textarea id="jsonOutput" rows="6" readonly placeholder="Formatted JSON will appear here..."></textarea>
+            </div>
+            
+            <div id="jsonMessage"></div>
+        </div>
+    </div>
+    
+    <script>
+        function formatJSON() {
+            const input = document.getElementById('jsonInput').value;
+            const output = document.getElementById('jsonOutput');
+            const message = document.getElementById('jsonMessage');
+            
+            try {
+                if (!input.trim()) {
+                    message.className = 'error-message';
+                    message.textContent = 'Please enter JSON data';
+                    return;
+                }
+                
+                const parsed = JSON.parse(input);
+                output.value = JSON.stringify(parsed, null, 2);
+                message.className = 'success-message';
+                message.textContent = '✅ Valid JSON formatted successfully';
+            } catch (error) {
+                message.className = 'error-message';
+                message.textContent = '❌ Invalid JSON: ' + error.message;
+                output.value = '';
+            }
+        }
+        
+        function minifyJSON() {
+            const input = document.getElementById('jsonInput').value;
+            const output = document.getElementById('jsonOutput');
+            const message = document.getElementById('jsonMessage');
+            
+            try {
+                if (!input.trim()) {
+                    message.className = 'error-message';
+                    message.textContent = 'Please enter JSON data';
+                    return;
+                }
+                
+                const parsed = JSON.parse(input);
+                output.value = JSON.stringify(parsed);
+                message.className = 'success-message';
+                message.textContent = '✅ JSON minified successfully';
+            } catch (error) {
+                message.className = 'error-message';
+                message.textContent = '❌ Invalid JSON: ' + error.message;
+                output.value = '';
+            }
+        }
+        
+        function validateJSON() {
+            const input = document.getElementById('jsonInput').value;
+            const message = document.getElementById('jsonMessage');
+            
+            try {
+                if (!input.trim()) {
+                    message.className = 'error-message';
+                    message.textContent = 'Please enter JSON to validate';
+                    return;
+                }
+                
+                JSON.parse(input);
+                message.className = 'success-message';
+                message.textContent = '✅ Valid JSON!';
+            } catch (error) {
+                message.className = 'error-message';
+                message.textContent = '❌ Invalid JSON: ' + error.message;
+            }
+        }
+        
+        function clearJSON() {
+            document.getElementById('jsonInput').value = '';
+            document.getElementById('jsonOutput').value = '';
+            document.getElementById('jsonMessage').textContent = '';
+        }
+    </script>
+</body>
+</html>
