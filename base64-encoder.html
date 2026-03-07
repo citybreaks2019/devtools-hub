@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base64 Encoder/Decoder - Free Online Tool</title>
+    <title>Base64 Encoder/Decoder - DevTools Hub</title>
+    <meta name="description" content="Free online Base64 encoder and decoder. Convert text to Base64 and decode Base64 to text instantly.">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 15px;
+            padding: 20px;
         }
+        
         .container {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
         
-        /* Super Stylish Round Back Button */
+        /* Fancy Round Back Button */
         .back-button {
             display: inline-flex;
             align-items: center;
@@ -29,134 +32,153 @@
             background: white;
             color: #667eea;
             text-decoration: none;
-            padding: 14px 25px;
+            padding: 12px 25px;
             border-radius: 50px;
             font-weight: 600;
             font-size: 1.1em;
             margin-bottom: 25px;
             border: none;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .back-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
         
         .back-button:hover {
             transform: translateX(-5px) scale(1.05);
-            box-shadow: 0 12px 25px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
         }
         
-        .back-button:hover::before {
-            opacity: 1;
-        }
-        
-        .back-button:active {
-            transform: translateX(-2px) scale(0.98);
-        }
-        
         .back-icon {
-            font-size: 1.4em;
-            line-height: 1;
-            transition: transform 0.3s ease;
+            font-size: 1.3em;
         }
         
-        .back-button:hover .back-icon {
-            transform: translateX(-5px);
-        }
-        
-        .back-text {
-            line-height: 1;
-        }
-        
+        /* Tool Card */
         .tool-card {
             background: white;
             border-radius: 20px;
-            padding: 25px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
+        
         h1 {
             color: #333;
-            margin-bottom: 20px;
-            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-size: 2em;
         }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        /* Input/Output Areas */
+        .input-area, .output-area {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
         textarea {
             width: 100%;
             padding: 15px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
+            font-family: 'Courier New', monospace;
             font-size: 14px;
-            font-family: monospace;
-            margin-bottom: 15px;
+            resize: vertical;
+            min-height: 120px;
         }
+        
         textarea:focus {
             outline: none;
             border-color: #667eea;
         }
+        
+        textarea[readonly] {
+            background: #f5f5f5;
+        }
+        
+        /* Button Group */
         .button-group {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
-            margin-bottom: 20px;
+            margin: 20px 0;
         }
-        button {
+        
+        .primary-btn, .secondary-btn {
             flex: 1;
-            min-width: 100px;
-            padding: 12px;
+            min-width: 120px;
+            padding: 12px 20px;
             border: none;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 1em;
+            font-weight: 600;
             cursor: pointer;
-            touch-action: manipulation;
+            transition: all 0.3s ease;
         }
-        button:active {
-            transform: scale(0.98);
-        }
+        
         .primary-btn {
-            background: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
         }
+        
+        .primary-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
         .secondary-btn {
             background: #e2e8f0;
             color: #333;
         }
-        .output-area {
-            margin-top: 15px;
-        }
-        .error-message {
-            color: #e53e3e;
-            padding: 10px;
-            background: #fed7d7;
-            border-radius: 8px;
-            margin-top: 10px;
-        }
-        .success-message {
-            color: #2f855a;
-            padding: 10px;
-            background: #c6f6d5;
-            border-radius: 8px;
-            margin-top: 10px;
+        
+        .secondary-btn:hover {
+            background: #cbd5e0;
+            transform: translateY(-2px);
         }
         
-        @media (max-width: 600px) {
+        /* Message Area */
+        .message-area {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            min-height: 50px;
+        }
+        
+        .success-message {
+            background: #c6f6d5;
+            color: #22543d;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+        
+        .error-message {
+            background: #fed7d7;
+            color: #c53030;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tool-card {
+                padding: 20px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
             .back-button {
-                padding: 12px 20px;
+                padding: 10px 20px;
                 font-size: 1em;
-                margin-bottom: 20px;
             }
         }
     </style>
@@ -166,63 +188,69 @@
         <!-- Fancy Round Back Button -->
         <a href="index.html" class="back-button">
             <span class="back-icon">←</span>
-            <span class="back-text">Back to Tools</span>
+            <span>Back to Tools</span>
         </a>
         
+        <!-- Main Tool Card -->
         <div class="tool-card">
             <h1>🔤 Base64 Encoder / Decoder</h1>
+            <p class="subtitle">Convert text to Base64 and decode Base64 back to text instantly</p>
             
-            <textarea id="base64Input" rows="6" placeholder="Enter text to encode or Base64 to decode..."></textarea>
+            <!-- Input Area -->
+            <div class="input-area">
+                <label for="inputText">Enter Text or Base64:</label>
+                <textarea id="inputText" placeholder="Type or paste your text here..."></textarea>
+            </div>
             
+            <!-- Buttons -->
             <div class="button-group">
-                <button class="primary-btn" onclick="encodeBase64()">Encode to Base64</button>
-                <button class="primary-btn" onclick="decodeBase64()">Decode from Base64</button>
-                <button class="secondary-btn" onclick="swapBase64()">Swap</button>
-                <button class="secondary-btn" onclick="clearBase64()">Clear</button>
+                <button class="primary-btn" onclick="encodeText()">⬆️ Encode to Base64</button>
+                <button class="primary-btn" onclick="decodeText()">⬇️ Decode from Base64</button>
+                <button class="secondary-btn" onclick="swapText()">🔄 Swap</button>
+                <button class="secondary-btn" onclick="clearAll()">🗑️ Clear</button>
             </div>
             
+            <!-- Output Area -->
             <div class="output-area">
-                <textarea id="base64Output" rows="6" readonly placeholder="Result will appear here..."></textarea>
+                <label for="outputText">Result:</label>
+                <textarea id="outputText" readonly placeholder="Result will appear here..."></textarea>
             </div>
             
-            <div id="base64Message"></div>
+            <!-- Message Area -->
+            <div id="messageBox" class="message-area"></div>
         </div>
     </div>
     
     <script>
-        function encodeBase64() {
-            const input = document.getElementById('base64Input').value;
-            const output = document.getElementById('base64Output');
-            const message = document.getElementById('base64Message');
+        function encodeText() {
+            const input = document.getElementById('inputText').value;
+            const output = document.getElementById('outputText');
+            const messageBox = document.getElementById('messageBox');
             
             try {
                 if (!input.trim()) {
-                    message.className = 'error-message';
-                    message.textContent = 'Please enter text to encode';
+                    showMessage('Please enter text to encode', 'error');
                     return;
                 }
                 
-                // Convert string to Base64
+                // Convert to Base64
                 const encoded = btoa(unescape(encodeURIComponent(input)));
                 output.value = encoded;
-                message.className = 'success-message';
-                message.textContent = '✅ Encoded successfully';
+                showMessage('✅ Text encoded successfully!', 'success');
             } catch (error) {
-                message.className = 'error-message';
-                message.textContent = '❌ Encoding failed: ' + error.message;
+                showMessage('❌ Encoding failed: ' + error.message, 'error');
                 output.value = '';
             }
         }
         
-        function decodeBase64() {
-            const input = document.getElementById('base64Input').value;
-            const output = document.getElementById('base64Output');
-            const message = document.getElementById('base64Message');
+        function decodeText() {
+            const input = document.getElementById('inputText').value;
+            const output = document.getElementById('outputText');
+            const messageBox = document.getElementById('messageBox');
             
             try {
                 if (!input.trim()) {
-                    message.className = 'error-message';
-                    message.textContent = 'Please enter Base64 to decode';
+                    showMessage('Please enter Base64 to decode', 'error');
                     return;
                 }
                 
@@ -232,33 +260,45 @@
                     throw new Error('Invalid Base64 format');
                 }
                 
-                // Decode Base64 to string
+                // Decode Base64
                 const decoded = decodeURIComponent(escape(atob(input)));
                 output.value = decoded;
-                message.className = 'success-message';
-                message.textContent = '✅ Decoded successfully';
+                showMessage('✅ Base64 decoded successfully!', 'success');
             } catch (error) {
-                message.className = 'error-message';
-                message.textContent = '❌ Decoding failed: ' + error.message;
+                showMessage('❌ Decoding failed: ' + error.message, 'error');
                 output.value = '';
             }
         }
         
-        function swapBase64() {
-            const input = document.getElementById('base64Input');
-            const output = document.getElementById('base64Output');
+        function swapText() {
+            const input = document.getElementById('inputText');
+            const output = document.getElementById('outputText');
             
             if (output.value) {
                 input.value = output.value;
                 output.value = '';
-                document.getElementById('base64Message').textContent = '';
+                document.getElementById('messageBox').innerHTML = '';
             }
         }
         
-        function clearBase64() {
-            document.getElementById('base64Input').value = '';
-            document.getElementById('base64Output').value = '';
-            document.getElementById('base64Message').textContent = '';
+        function clearAll() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('outputText').value = '';
+            document.getElementById('messageBox').innerHTML = '';
+        }
+        
+        function showMessage(text, type) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.innerHTML = text;
+            messageBox.className = 'message-area ' + (type === 'success' ? 'success-message' : 'error-message');
+            
+            // Auto hide after 3 seconds for success messages
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageBox.innerHTML = '';
+                    messageBox.className = 'message-area';
+                }, 3000);
+            }
         }
     </script>
 </body>
