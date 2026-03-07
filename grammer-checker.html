@@ -101,28 +101,6 @@
             margin-bottom: 20px;
         }
         
-        .input-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        
-        .tab-btn {
-            padding: 10px 20px;
-            background: #f1f5f9;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            color: #64748b;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .tab-btn.active {
-            background: #667eea;
-            color: white;
-        }
-        
         textarea {
             width: 100%;
             padding: 20px;
@@ -138,24 +116,6 @@
         textarea:focus {
             outline: none;
             border-color: #667eea;
-        }
-        
-        .file-upload {
-            display: none;
-        }
-        
-        .upload-label {
-            display: inline-block;
-            padding: 10px 20px;
-            background: #e2e8f0;
-            color: #4a5568;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .upload-label:hover {
-            background: #cbd5e0;
         }
         
         .button-group {
@@ -324,27 +284,14 @@
                     <div class="stat-value" id="errorCount">0</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-label">Time</div>
+                    <div class="stat-label">Reading Time</div>
                     <div class="stat-value" id="readTime">0 min</div>
                 </div>
             </div>
             
-            <!-- Input Tabs -->
-            <div class="input-tabs">
-                <button class="tab-btn active" id="typeTab">Type Text</button>
-                <button class="tab-btn" id="uploadTab">Upload File</button>
-            </div>
-            
             <!-- Text Input Area -->
-            <div class="input-area" id="textInputArea">
+            <div class="input-area">
                 <textarea id="inputText" placeholder="Type or paste your text here... (e.g., 'I have went to the store yesterday and buyed some apples.')">I have went to the store yesterday and buyed some apples.</textarea>
-                
-                <!-- File Upload (Hidden by default) -->
-                <div id="fileUploadArea" style="display: none;">
-                    <input type="file" id="fileInput" accept=".txt,.doc,.docx" class="file-upload">
-                    <label for="fileInput" class="upload-label">📁 Choose File (TXT, DOC)</label>
-                    <p style="color: #64748b; margin-top: 10px; font-size: 0.9em;">Maximum file size: 1MB</p>
-                </div>
             </div>
             
             <!-- Buttons -->
@@ -370,7 +317,6 @@
     <script>
         // Common spelling errors database
         const spellingErrors = {
-            // Common misspellings
             'teh': 'the',
             'recieve': 'receive',
             'seperate': 'separate',
@@ -458,11 +404,8 @@
             'monkies': 'monkeys',
             'morgage': 'mortgage',
             'mountian': 'mountain',
-            'neccessary': 'necessary',
-            'neighbour': 'neighbor',
             'noticable': 'noticeable',
             'occassion': 'occasion',
-            'occurence': 'occurrence',
             'originaly': 'originally',
             'overated': 'overrated',
             'parralel': 'parallel',
@@ -481,7 +424,6 @@
             'publicly': 'publicly',
             'pursuade': 'persuade',
             'realy': 'really',
-            'recieve': 'receive',
             'refered': 'referred',
             'refering': 'referring',
             'remeber': 'remember',
@@ -494,7 +436,6 @@
             'sargent': 'sergeant',
             'seige': 'siege',
             'sence': 'sense',
-            'seperate': 'separate',
             'sieze': 'seize',
             'similiar': 'similar',
             'sincerley': 'sincerely',
@@ -506,18 +447,14 @@
             'supposably': 'supposedly',
             'surprize': 'surprise',
             'targetted': 'targeted',
-            'teh': 'the',
             'thier': 'their',
             'tomatos': 'tomatoes',
             'tommorrow': 'tomorrow',
-            'tongue': 'tongue',
-            'truely': 'truly',
             'twelth': 'twelfth',
             'tyrany': 'tyranny',
             'unbeleivable': 'unbelievable',
             'unforseen': 'unforeseen',
             'unfortunatly': 'unfortunately',
-            'untill': 'until',
             'unussual': 'unusual',
             'vacume': 'vacuum',
             'vegatarian': 'vegetarian',
@@ -525,86 +462,14 @@
             'vehical': 'vehicle',
             'vengance': 'vengeance',
             'villian': 'villain',
-            'wierd': 'weird',
-            'writting': 'writing',
             'yatch': 'yacht',
             'your': "you're",
             'buyed': 'bought',
             'goed': 'went',
-            'doed': 'did',
-            'rumored': 'rumoured',
-            'color': 'colour',
-            'center': 'centre',
-            'theater': 'theatre'
+            'doed': 'did'
         };
         
-        // Grammar patterns (regex-based detection)
-        const grammarPatterns = [
-            {
-                pattern: /\b(has|have|had)\s+(\w+ed)\b(?!\s+been)/gi,
-                replace: (match, p1, p2) => `${p1} been ${p2}`,
-                desc: 'Missing auxiliary verb',
-                type: 'grammar'
-            },
-            {
-                pattern: /\b(am|is|are|was|were)\s+(\w+ed)\b(?!\s+by)/gi,
-                replace: (match, p1, p2) => `${p1} been ${p2}`,
-                desc: 'Passive voice misuse',
-                type: 'grammar'
-            },
-            {
-                pattern: /\b(he|she|it)\s+(don't|doesn't)\s+(\w+)/gi,
-                replace: (match, p1, p2, p3) => `${p1} ${p2 === "don't" ? "doesn't" : p2} ${p3}`,
-                desc: 'Subject-verb agreement',
-                type: 'grammar'
-            },
-            {
-                pattern: /\b(I|you|we|they)\s+(doesn't)\s+(\w+)/gi,
-                replace: (match, p1, p2, p3) => `${p1} don't ${p3}`,
-                desc: 'Subject-verb agreement',
-                type: 'grammar'
-            },
-            {
-                pattern: /\b(himself|herself|itself|themselves)\s+(\w+ed)\b/gi,
-                replace: (match, p1, p2) => `${p1} ${p2}`,
-                desc: 'Reflexive pronoun misuse',
-                type: 'grammar'
-            }
-        ];
-        
-        // Tab switching
-        document.getElementById('typeTab').addEventListener('click', function() {
-            this.classList.add('active');
-            document.getElementById('uploadTab').classList.remove('active');
-            document.getElementById('textInputArea').style.display = 'block';
-            document.getElementById('fileUploadArea').style.display = 'none';
-        });
-        
-        document.getElementById('uploadTab').addEventListener('click', function() {
-            this.classList.add('active');
-            document.getElementById('typeTab').classList.remove('active');
-            document.getElementById('textInputArea').style.display = 'block';
-            document.getElementById('fileUploadArea').style.display = 'block';
-        });
-        
-        // File input handler
-        document.getElementById('fileInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            
-            if (file.size > 1024 * 1024) {
-                showMessage('File too large! Maximum 1MB', 'error');
-                return;
-            }
-            
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('inputText').value = event.target.result;
-                showMessage('File loaded successfully!', 'success');
-            };
-            reader.readAsText(file);
-        });
-        
+        // Function to check grammar
         function checkGrammar() {
             const input = document.getElementById('inputText').value;
             
@@ -613,18 +478,26 @@
                 return;
             }
             
+            // Show stats bar
+            document.getElementById('statsBar').style.display = 'flex';
+            
             // Update stats
-            updateStats(input);
+            const words = input.trim() ? input.trim().split(/\s+/).length : 0;
+            document.getElementById('wordCount').textContent = words;
             
-            // Split into sentences
-            const sentences = input.split(/[.!?]+/).filter(s => s.trim());
-            const words = input.split(/\s+/).filter(w => w.trim());
+            // Reading time
+            const minutes = Math.ceil(words / 200);
+            document.getElementById('readTime').textContent = minutes + ' min';
             
+            // Find errors
             const errors = [];
             let correctedText = input;
             
+            // Split into words
+            const wordArray = input.split(/\s+/);
+            
             // Check each word for spelling
-            words.forEach(word => {
+            wordArray.forEach(word => {
                 const cleanWord = word.replace(/[.,!?;:()]/g, '').toLowerCase();
                 if (spellingErrors[cleanWord]) {
                     errors.push({
@@ -634,31 +507,9 @@
                         context: `Spelling error: "${word}" should be "${spellingErrors[cleanWord]}"`
                     });
                     
-                    // Replace in corrected text (preserve original case)
+                    // Replace in corrected text
                     const regex = new RegExp(`\\b${word}\\b`, 'g');
-                    let replacement = spellingErrors[cleanWord];
-                    if (word[0] === word[0].toUpperCase()) {
-                        replacement = replacement.charAt(0).toUpperCase() + replacement.slice(1);
-                    }
-                    correctedText = correctedText.replace(regex, replacement);
-                }
-            });
-            
-            // Check grammar patterns
-            grammarPatterns.forEach(pattern => {
-                const matches = input.match(pattern.pattern);
-                if (matches) {
-                    matches.forEach(match => {
-                        errors.push({
-                            type: 'grammar',
-                            word: match,
-                            suggestion: 'Check grammar structure',
-                            context: pattern.desc
-                        });
-                    });
-                    
-                    // Apply correction
-                    correctedText = correctedText.replace(pattern.pattern, pattern.replace);
+                    correctedText = correctedText.replace(regex, spellingErrors[cleanWord]);
                 }
             });
             
@@ -686,34 +537,22 @@
             // Display results
             displayResults(errors, correctedText);
             document.getElementById('resultsArea').style.display = 'block';
+            document.getElementById('errorCount').textContent = errors.length;
             
             if (errors.length === 0) {
-                document.getElementById('errorsList').innerHTML = '<p style="color: #48bb78;">✅ No errors found! Your text looks good.</p>';
+                document.getElementById('errorsList').innerHTML = '<p style="color: #48bb78; text-align: center;">✅ No errors found! Your text looks perfect.</p>';
+                showMessage('No errors found!', 'success');
+            } else {
+                showMessage(`Found ${errors.length} potential error${errors.length !== 1 ? 's' : ''}`, 'error');
             }
-            
-            showMessage(`Found ${errors.length} potential error${errors.length !== 1 ? 's' : ''}`, errors.length > 0 ? 'error' : 'success');
         }
         
-        function updateStats(text) {
-            document.getElementById('statsBar').style.display = 'flex';
-            
-            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-            document.getElementById('wordCount').textContent = words;
-            
-            // Reading time (200 words per minute)
-            const minutes = Math.ceil(words / 200);
-            document.getElementById('readTime').textContent = minutes + ' min';
-        }
-        
+        // Function to display results
         function displayResults(errors, correctedText) {
             const errorsList = document.getElementById('errorsList');
             errorsList.innerHTML = '';
             
-            document.getElementById('errorCount').textContent = errors.length;
-            
-            if (errors.length === 0) {
-                errorsList.innerHTML = '<p style="color: #48bb78; text-align: center;">✅ No issues found! Your text is perfect.</p>';
-            } else {
+            if (errors.length > 0) {
                 errors.forEach(error => {
                     const errorDiv = document.createElement('div');
                     errorDiv.className = `error-item ${error.type === 'spelling' ? 'spelling' : 'warning'}`;
@@ -727,25 +566,22 @@
                     `;
                     errorsList.appendChild(errorDiv);
                 });
+            } else {
+                errorsList.innerHTML = '<p style="color: #48bb78; text-align: center;">✅ No issues found!</p>';
             }
             
-            // Show corrected version with highlighting
-            let highlighted = correctedText;
-            errors.forEach(error => {
-                const regex = new RegExp(`\\b${error.suggestion}\\b`, 'g');
-                highlighted = highlighted.replace(regex, `<span class="corrected">${error.suggestion}</span>`);
-            });
-            document.getElementById('correctedText').innerHTML = highlighted;
+            document.getElementById('correctedText').innerHTML = correctedText;
         }
         
+        // Function to clear all
         function clearAll() {
             document.getElementById('inputText').value = '';
             document.getElementById('resultsArea').style.display = 'none';
             document.getElementById('statsBar').style.display = 'none';
-            document.getElementById('fileInput').value = '';
             document.getElementById('messageBox').innerHTML = '';
         }
         
+        // Function to show message
         function showMessage(text, type) {
             const messageBox = document.getElementById('messageBox');
             messageBox.innerHTML = text;
