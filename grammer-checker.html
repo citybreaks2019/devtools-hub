@@ -5,191 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grammar Checker - DevTools Hub</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
+        .container { max-width: 800px; margin: 0 auto; }
         .back-btn {
             display: inline-block;
             padding: 10px 20px;
             background: white;
             color: #667eea;
             text-decoration: none;
-            border-radius: 50px;
+            border-radius: 5px;
             margin-bottom: 20px;
-            font-weight: bold;
         }
         .tool-card {
             background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
+        h1 { margin-bottom: 20px; }
         textarea {
             width: 100%;
-            height: 200px;
-            padding: 15px;
-            border: 2px solid #ddd;
-            border-radius: 10px;
-            font-size: 16px;
+            height: 150px;
+            padding: 10px;
             margin-bottom: 20px;
         }
         button {
-            padding: 12px 25px;
+            padding: 10px 20px;
             background: #667eea;
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
+            border-radius: 5px;
             cursor: pointer;
             margin-right: 10px;
-        }
-        button:hover {
-            background: #5a67d8;
         }
         .results {
             margin-top: 20px;
             padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-        .error-item {
-            padding: 10px;
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-            margin-bottom: 10px;
-        }
-        .corrected {
-            margin-top: 20px;
-            padding: 15px;
-            background: #d4edda;
-            border-left: 4px solid #28a745;
+            background: #f5f5f5;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="index.html" class="back-btn">← Back to Tools</a>
-        
+        <a href="index.html" class="back-btn">← Back</a>
         <div class="tool-card">
             <h1>📝 Grammar Checker</h1>
-            <p>Check your text for common grammar and spelling mistakes</p>
-            
-            <textarea id="inputText" placeholder="Type or paste your text here...">I have went to the store yesterday and buyed some apples. Their is a mistake here.</textarea>
-            
-            <button onclick="checkGrammar()">🔍 Check Grammar</button>
-            <button onclick="clearText()">🗑️ Clear</button>
-            
+            <textarea id="text">I have went to the store and buyed some apples. Their is a mistake here.</textarea>
+            <button onclick="checkGrammar()">Check</button>
+            <button onclick="clearText()">Clear</button>
             <div id="results" class="results" style="display: none;"></div>
         </div>
     </div>
-    
     <script>
+        const errors = {
+            'went after have': 'gone',
+            'buyed': 'bought',
+            'thier': 'their',
+            'recieve': 'receive',
+            'seperate': 'separate'
+        };
+
         function checkGrammar() {
-            const text = document.getElementById('inputText').value;
+            const text = document.getElementById('text').value;
+            const div = document.getElementById('results');
+            div.style.display = 'block';
+            let html = '<h3>Issues:</h3>';
+            let found = false;
             
-            if (!text.trim()) {
-                alert('Please enter some text');
-                return;
+            if (text.includes('have went')) {
+                html += '<p>❌ "have went" → <b>have gone</b></p>';
+                found = true;
             }
-            
-            const errors = [];
-            let corrected = text;
-            
-            // Common error patterns
-            const patterns = [
-                { wrong: 'have went', correct: 'have gone', msg: 'Use "have gone" instead of "have went"' },
-                { wrong: 'buyed', correct: 'bought', msg: 'Past tense of "buy" is "bought"' },
-                { wrong: 'goed', correct: 'went', msg: 'Past tense of "go" is "went"' },
-                { wrong: 'doed', correct: 'did', msg: 'Past tense of "do" is "did"' },
-                { wrong: 'eated', correct: 'ate', msg: 'Past tense of "eat" is "ate"' },
-                { wrong: 'thier', correct: 'their', msg: 'Possessive form is "their"' },
-                { wrong: 'recieve', correct: 'receive', msg: 'Spelling: receive (i before e except after c)' },
-                { wrong: 'seperate', correct: 'separate', msg: 'Spelling: separate (has "a" in middle)' },
-                { wrong: 'definately', correct: 'definitely', msg: 'Spelling: definitely' },
-                { wrong: 'occured', correct: 'occurred', msg: 'Spelling: occurred (double r)' },
-                { wrong: 'untill', correct: 'until', msg: 'Spelling: until (one l)' },
-                { wrong: 'tommorow', correct: 'tomorrow', msg: 'Spelling: tomorrow (double m, double r)' },
-                { wrong: 'alot', correct: 'a lot', msg: '"a lot" is two words' },
-                { wrong: 'freind', correct: 'friend', msg: 'Spelling: friend' },
-                { wrong: 'calender', correct: 'calendar', msg: 'Spelling: calendar' }
-            ];
-            
-            // Check each pattern
-            patterns.forEach(pattern => {
-                if (text.toLowerCase().includes(pattern.wrong)) {
-                    errors.push({
-                        word: pattern.wrong,
-                        suggestion: pattern.correct,
-                        message: pattern.msg
-                    });
-                    
-                    // Replace in corrected text
-                    const regex = new RegExp(pattern.wrong, 'gi');
-                    corrected = corrected.replace(regex, pattern.correct);
-                }
-            });
-            
-            // Check for "their/there/they're" confusion
-            const words = text.split(' ');
-            words.forEach((word, index) => {
-                if (word.toLowerCase() === 'their' && index > 0 && words[index-1] === 'is') {
-                    errors.push({
-                        word: 'their',
-                        suggestion: 'there',
-                        message: 'Use "there" for existence (there is)'
-                    });
-                }
-            });
-            
-            // Display results
-            displayResults(errors, corrected);
-        }
-        
-        function displayResults(errors, corrected) {
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.style.display = 'block';
-            
-            let html = '<h3>Issues Found:</h3>';
-            
-            if (errors.length === 0) {
-                html += '<p style="color: #28a745;">✓ No errors found! Your text looks good.</p>';
-            } else {
-                errors.forEach(error => {
-                    html += `
-                        <div class="error-item">
-                            <strong>❌ ${error.word}</strong> → <strong style="color: #28a745;">${error.suggestion}</strong>
-                            <br><small>${error.message}</small>
-                        </div>
-                    `;
-                });
+            if (text.includes('buyed')) {
+                html += '<p>❌ "buyed" → <b>bought</b></p>';
+                found = true;
             }
-            
-            html += '<div class="corrected">';
-            html += '<h4>Suggested Correction:</h4>';
-            html += `<p>${corrected}</p>`;
-            html += '</div>';
-            
-            resultsDiv.innerHTML = html;
+            if (text.includes('thier')) {
+                html += '<p>❌ "thier" → <b>their</b></p>';
+                found = true;
+            }
+            if (!found) html += '<p>✓ No errors</p>';
+            div.innerHTML = html;
         }
-        
+
         function clearText() {
-            document.getElementById('inputText').value = '';
+            document.getElementById('text').value = '';
             document.getElementById('results').style.display = 'none';
         }
     </script>
