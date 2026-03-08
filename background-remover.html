@@ -23,7 +23,6 @@
             margin: 0 auto;
         }
 
-        /* Glassmorphism Back Button */
         .back-button {
             display: inline-flex;
             align-items: center;
@@ -46,7 +45,6 @@
             transform: translateX(-5px);
         }
 
-        /* Main Card */
         .pro-card {
             background: white;
             border-radius: 30px;
@@ -72,7 +70,6 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Header Section */
         .header-section {
             text-align: center;
             margin-bottom: 40px;
@@ -92,74 +89,45 @@
             font-size: 1.2em;
         }
 
-        .api-badge {
+        .success-badge {
             display: inline-block;
             background: linear-gradient(135deg, #48bb78, #38a169);
             color: white;
-            padding: 8px 20px;
+            padding: 8px 25px;
             border-radius: 50px;
             font-weight: 600;
             margin-top: 15px;
             box-shadow: 0 5px 15px rgba(72, 187, 120, 0.3);
         }
 
-        /* API Key Section */
-        .api-section {
-            background: #f8fafc;
-            border-radius: 15px;
-            padding: 25px;
+        .api-status {
+            background: #f0f9ff;
+            border: 2px solid #48bb78;
+            border-radius: 10px;
+            padding: 15px 20px;
             margin-bottom: 30px;
-            border: 2px solid #e2e8f0;
-            position: relative;
-        }
-
-        .api-label {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-
-        .api-label span {
-            background: #667eea;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 0.9em;
-            font-weight: 600;
-        }
-
-        .api-input-wrapper {
-            display: flex;
+            justify-content: center;
             gap: 10px;
         }
 
-        .api-input-wrapper input {
-            flex: 1;
-            padding: 15px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
-            font-size: 14px;
-            font-family: monospace;
-            background: white;
+        .api-status span {
+            color: #22543d;
+            font-weight: 500;
         }
 
-        .api-input-wrapper input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        .api-status {
-            display: inline-block;
-            padding: 5px 15px;
+        .api-status .check {
             background: #48bb78;
             color: white;
-            border-radius: 20px;
-            font-size: 0.9em;
-            margin-top: 10px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Upload Area */
         .upload-area {
             border: 3px dashed #667eea;
             border-radius: 20px;
@@ -169,7 +137,6 @@
             margin-bottom: 30px;
             background: linear-gradient(135deg, #f8fafc 0%, #edf2f7 100%);
             transition: all 0.3s ease;
-            position: relative;
         }
 
         .upload-area:hover {
@@ -207,7 +174,6 @@
             font-size: 0.9em;
         }
 
-        /* Preview Container */
         .preview-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -272,7 +238,6 @@
             font-size: 0.95em;
         }
 
-        /* Process Button */
         .process-btn {
             width: 100%;
             padding: 20px;
@@ -300,7 +265,6 @@
             box-shadow: none;
         }
 
-        /* Download Button */
         .download-btn {
             display: inline-block;
             padding: 15px 40px;
@@ -319,7 +283,6 @@
             box-shadow: 0 15px 40px rgba(72, 187, 120, 0.5);
         }
 
-        /* Loading Overlay */
         .loading-overlay {
             display: none;
             position: fixed;
@@ -360,7 +323,6 @@
             margin-top: 10px;
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .preview-container {
                 grid-template-columns: 1fr;
@@ -377,13 +339,8 @@
             .upload-title {
                 font-size: 1.4em;
             }
-
-            .api-input-wrapper {
-                flex-direction: column;
-            }
         }
 
-        /* Credit Info */
         .credit-info {
             text-align: center;
             margin-top: 20px;
@@ -393,49 +350,28 @@
             color: #666;
             font-size: 0.95em;
         }
-
-        .credit-info a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .credit-info a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Back Button -->
         <a href="index.html" class="back-button">
             <span>←</span>
             <span>Back to Tools</span>
         </a>
 
-        <!-- Main Card -->
         <div class="pro-card">
-            <!-- Header -->
             <div class="header-section">
                 <h1>✨ Background Remover Pro</h1>
-                <p>Remove image backgrounds instantly with AI - 100% automatic</p>
-                <div class="api-badge">⚡ Powered by remove.bg • 50 free credits/month</div>
+                <p>Remove image backgrounds instantly - 100% automatic</p>
+                <div class="success-badge">⚡ API Key Pre-Configured • Ready to Use</div>
             </div>
 
-            <!-- API Key Section (Auto-filled) -->
-            <div class="api-section">
-                <div class="api-label">
-                    <span>🔑 API KEY</span>
-                    <div class="api-status">✓ Auto-configured</div>
-                </div>
-                <div class="api-input-wrapper">
-                    <input type="text" id="apiKey" value="sYevBqp7pWcRkrRJd4t3TBpr" readonly>
-                    <button onclick="copyApiKey()" style="padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">Copy</button>
-                </div>
-                <p style="color: #48bb78; margin-top: 10px; font-size: 0.9em;">✓ API key is pre-configured - ready to use!</p>
+            <!-- API Status - Just for information, no copy option -->
+            <div class="api-status">
+                <span class="check">✓</span>
+                <span>API key is permanently configured and ready to use</span>
             </div>
 
-            <!-- Upload Area -->
             <div class="upload-area" onclick="document.getElementById('fileInput').click()">
                 <div class="upload-icon">📸</div>
                 <div class="upload-title">Upload Your Image</div>
@@ -444,10 +380,8 @@
                 <input type="file" id="fileInput" accept="image/*" style="display: none;">
             </div>
 
-            <!-- Preview Section -->
             <div id="previewSection" style="display: none;">
                 <div class="preview-container">
-                    <!-- Original Image -->
                     <div class="preview-card">
                         <div class="preview-header">
                             <h3>📷 Original</h3>
@@ -459,7 +393,6 @@
                         <div class="image-info" id="originalInfo"></div>
                     </div>
 
-                    <!-- Processed Image -->
                     <div class="preview-card">
                         <div class="preview-header">
                             <h3>✨ Background Removed</h3>
@@ -472,26 +405,21 @@
                     </div>
                 </div>
 
-                <!-- Process Button -->
                 <button class="process-btn" id="processBtn" onclick="processImage()">
                     ✨ Remove Background Now
                 </button>
 
-                <!-- Download Button -->
                 <div style="text-align: center;">
                     <a id="downloadLink" class="download-btn" style="display: none;">📥 Download HD Image</a>
                 </div>
             </div>
 
-            <!-- Credit Info -->
             <div class="credit-info">
-                ⚡ API key pre-configured • Free credits remaining: <span id="creditEstimate">~45</span> • 
-                <a href="#" onclick="window.open('https://www.remove.bg/api', '_blank')">Get your own API key</a>
+                ⚡ API key permanently configured • Free credits remaining: <span id="creditEstimate">~50</span>
             </div>
         </div>
     </div>
 
-    <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
         <div class="loading-text">Removing Background...</div>
@@ -500,15 +428,15 @@
 
     <script>
         // ===========================================
-        // API KEY - PRE-CONFIGURED
+        // PERMANENT API KEY - NO COPY OPTION
         // ===========================================
         const API_KEY = 'sYevBqp7pWcRkrRJd4t3TBpr';
         
         let originalFile = null;
         let originalImage = null;
-        let originalDimensions = { width: 0, height: 0 };
 
-        // File input handler
+        console.log('Background Remover Initialized with API Key');
+
         document.getElementById('fileInput').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -525,11 +453,6 @@
                 originalImage = new Image();
                 originalImage.src = e.target.result;
                 originalImage.onload = function() {
-                    originalDimensions = {
-                        width: originalImage.width,
-                        height: originalImage.height
-                    };
-                    
                     document.getElementById('originalImg').src = e.target.result;
                     document.getElementById('originalInfo').innerHTML = `
                         Size: ${(file.size / 1024 / 1024).toFixed(2)} MB<br>
@@ -545,24 +468,12 @@
             reader.readAsDataURL(file);
         });
 
-        // Copy API key function
-        function copyApiKey() {
-            const apiKey = document.getElementById('apiKey');
-            apiKey.select();
-            apiKey.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(apiKey.value).then(() => {
-                alert('✅ API key copied to clipboard!');
-            });
-        }
-
-        // Process image function
         async function processImage() {
             if (!originalFile) {
                 alert('❌ Please upload an image first.');
                 return;
             }
 
-            // Show loading overlay
             document.getElementById('loadingOverlay').style.display = 'flex';
             document.getElementById('processBtn').disabled = true;
 
@@ -571,8 +482,6 @@
                 formData.append('image_file', originalFile);
                 formData.append('size', 'auto');
 
-                console.log('Sending request to remove.bg...');
-                
                 const response = await fetch('https://api.remove.bg/v1.0/removebg', {
                     method: 'POST',
                     headers: {
@@ -581,44 +490,34 @@
                     body: formData
                 });
 
-                console.log('Response status:', response.status);
-
                 if (!response.ok) {
-                    const errorText = await response.text();
-                    console.error('API Error:', errorText);
-                    
                     if (response.status === 402) {
-                        throw new Error('No free credits left. Get your own API key from remove.bg');
-                    } else if (response.status === 400) {
-                        throw new Error('Invalid image. Please try another image.');
+                        throw new Error('Free credits exhausted. Please try again next month.');
                     } else {
-                        throw new Error(`API Error (${response.status}): ${errorText}`);
+                        throw new Error(`API Error: ${response.status}`);
                     }
                 }
 
                 const blob = await response.blob();
                 const url = URL.createObjectURL(blob);
                 
-                // Display processed image
                 document.getElementById('processedImg').src = url;
                 document.getElementById('processedInfo').innerHTML = `
                     Size: ${(blob.size / 1024 / 1024).toFixed(2)} MB<br>
                     Format: PNG (transparent)
                 `;
                 
-                // Setup download
                 const downloadLink = document.getElementById('downloadLink');
                 downloadLink.href = url;
                 downloadLink.download = 'background-removed-' + originalFile.name.split('.')[0] + '.png';
                 downloadLink.style.display = 'inline-block';
 
-                // Update credit estimate (just for show)
+                // Update credit counter
                 const creditSpan = document.getElementById('creditEstimate');
-                const currentCredits = parseInt(creditSpan.textContent) || 45;
+                const currentCredits = parseInt(creditSpan.textContent);
                 creditSpan.textContent = currentCredits - 1;
 
             } catch (error) {
-                console.error('Error:', error);
                 alert('❌ Error: ' + error.message);
             } finally {
                 document.getElementById('loadingOverlay').style.display = 'none';
@@ -626,7 +525,7 @@
             }
         }
 
-        // Drag and drop functionality
+        // Drag and drop
         const uploadArea = document.querySelector('.upload-area');
         
         uploadArea.addEventListener('dragover', (e) => {
@@ -655,31 +554,6 @@
                 alert('❌ Please upload an image file.');
             }
         });
-
-        // Credit estimate - simulate remaining credits
-        function updateCreditEstimate() {
-            const used = parseInt(localStorage.getItem('bg_used') || '0');
-            const remaining = Math.max(0, 50 - used);
-            document.getElementById('creditEstimate').textContent = remaining;
-            
-            if (remaining <= 5) {
-                document.querySelector('.credit-info').innerHTML += 
-                    '<br><span style="color: #f56565;">⚠️ Low credits! Get your own API key.</span>';
-            }
-        }
-
-        // Track usage (simple localStorage)
-        document.getElementById('processBtn').addEventListener('click', function() {
-            const used = parseInt(localStorage.getItem('bg_used') || '0');
-            localStorage.setItem('bg_used', used + 1);
-            updateCreditEstimate();
-        });
-
-        // Initialize
-        updateCreditEstimate();
-
-        // Verify API key on load
-        console.log('API Key configured:', API_KEY ? '✓ Present' : '✗ Missing');
     </script>
 </body>
 </html>
