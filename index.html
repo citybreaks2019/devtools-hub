@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Explore Dev Tools- 12+ Free Professional Tools</title>
+    <title>ExploreDevTools - 12+ Free Professional Tools</title>
     <meta name="description" content="Free professional online tools: Password Generator, JSON Formatter, Image Compressor, Grammar Checker and more. 100% free, no signup.">
     <meta name="keywords" content="developer tools, online tools, free tools, image compressor, grammar checker, password generator">
     <!-- Google Search Console Verification -->
@@ -16,32 +16,21 @@
         }
         
         html {
-    
-    scroll-behavior: smooth 
-    
-}
-body {
-    overflow-y: scroll;
-}
+            scroll-behavior: smooth;
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(-45deg, #667eea, #764ba2, #23a6d5, #23d5ab);
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            animation: gradientBG 20s ease infinite;
             min-height: 100vh;
-    {
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-body {
-    animation: gradientBG 25s ease infinite;
-}
-       
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
         
         .container {
@@ -55,7 +44,7 @@ body {
         /* Glassmorphism Header */
         .site-header {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 30px;
             padding: 15px 30px;
@@ -63,38 +52,25 @@ body {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         
         .logo {
             display: flex;
             align-items: center;
-            gap: 15px;
-        }
-        
-        .logo-icon {
-            font-size: 2em;
-            animation: spin 10s linear infinite;
-        }
-        
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+            gap: 10px;
         }
         
         .site-title {
-            font-size: 1.8em;
-            font-weight: 800;
-            background: linear-gradient(135deg, #fff, #ffd700);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         
         .nav-menu {
             display: flex;
             gap: 20px;
-            align-items: center;
         }
         
         .nav-item {
@@ -120,14 +96,14 @@ body {
             padding: 60px;
             margin-bottom: 50px;
             text-align: center;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
         
         .hero-title {
             font-size: 3.5em;
             font-weight: 800;
             color: white;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
             margin-bottom: 20px;
         }
         
@@ -188,7 +164,7 @@ body {
             font-size: 1.2em;
         }
         
-        /* Category Tabs - Card Style */
+        /* Category Tabs */
         .category-tabs {
             display: flex;
             gap: 15px;
@@ -198,19 +174,18 @@ body {
         }
         
         .cat-btn {
-            padding: 15px 30px;
+            padding: 12px 25px;
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border: none;
-            border-radius: 15px;
+            border-radius: 30px;
             color: #333;
             font-weight: 600;
             font-size: 1em;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            min-width: 120px;
+            min-width: 100px;
         }
         
         .cat-btn:hover {
@@ -222,8 +197,6 @@ body {
         .cat-btn.active {
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-            border-color: transparent;
         }
         
         .cat-btn span {
@@ -235,11 +208,7 @@ body {
             margin-left: 8px;
         }
         
-        .active span {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        /* 3-Column Grid */
+        /* Tools Grid - 3 Columns */
         .tools-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -247,72 +216,50 @@ body {
             margin-top: 20px;
         }
         
-        /* Tool Cards - Compact Design */
+        /* Tool Cards */
         .tool-card {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            border-radius: 15px !important;
-            padding: 20px !important;
+            border-radius: 15px;
+            padding: 20px;
             text-decoration: none;
             color: #1e293b;
             border: 1px solid rgba(255, 255, 255, 0.5);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
         }
         
         .tool-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
             background: white;
         }
         
         .tool-icon {
-            font-size: 2.2em !important;
-            margin-bottom: 10px !important;
-            transition: transform 0.5s;
-        }
-        
-        .tool-card:hover .tool-icon {
-            transform: scale(1.2) rotate(5deg);
+            font-size: 2.5em;
+            margin-bottom: 10px;
         }
         
         .tool-card h3 {
-            font-size: 1.2em !important;
-            margin-bottom: 5px !important;
-            background: linear-gradient(135deg, #4158D0, #C850C0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            color: #333;
         }
         
         .tool-card p {
-            font-size: 0.85em !important;
-            margin-bottom: 12px !important;
-            line-height: 1.4 !important;
-            color: #4a5568 !important;
-            .tool-card {
-                
-    /* existing properties */
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 15px !important;
-    padding: 20px !important;
-    
-    /* ✅  - Hardware acceleration */
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
-        }
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
         
         .tool-tag {
             display: inline-block;
-            padding: 4px 10px !important;
+            padding: 4px 10px;
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
             border-radius: 30px;
-            font-size: 0.7em !important;
+            font-size: 0.75em;
             font-weight: 600;
         }
         
@@ -338,7 +285,7 @@ body {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 30px;
             border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
         
         .feature-card:hover {
@@ -364,25 +311,25 @@ body {
         /* CTA Section */
         .cta-section {
             text-align: center;
-            padding: 80px 0;
+            padding: 60px 0;
         }
         
         .cta-button {
             display: inline-block;
-            padding: 20px 50px;
+            padding: 15px 40px;
             background: linear-gradient(135deg, #ffd700, #ffa500);
             color: #1e293b;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: 700;
-            font-size: 1.3em;
-            transition: all 0.3s;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            font-weight: 600;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
         
         .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 30px 50px rgba(0,0,0,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
         
         /* Footer */
@@ -404,7 +351,7 @@ body {
         .footer-col h4 {
             color: white;
             margin-bottom: 20px;
-            font-size: 1.3em;
+            font-size: 1.2em;
         }
         
         .footer-col ul {
@@ -419,6 +366,7 @@ body {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             transition: all 0.3s;
+            font-size: 0.95em;
         }
         
         .footer-col ul li a:hover {
@@ -431,31 +379,45 @@ body {
             padding-top: 30px;
             border-top: 1px solid rgba(255, 255, 255, 0.2);
             color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9em;
         }
         
-        /* Responsive */
+        .footer-bottom a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        /* Responsive Design */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2.5em;
+                font-size: 2.2em;
+            }
+            
+            .hero-section {
+                padding: 30px;
             }
             
             .stats-grid {
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
             }
             
             .site-header {
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
             }
             
             .tools-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             
+            .category-tabs {
+                gap: 10px;
+            }
+            
             .cat-btn {
-                padding: 12px 20px;
-                min-width: 100px;
+                padding: 10px 15px;
                 font-size: 0.9em;
             }
         }
@@ -465,55 +427,31 @@ body {
                 grid-template-columns: 1fr;
             }
             
-            .category-tabs {
-                gap: 10px;
-            }
-            
             .cat-btn {
-                padding: 10px 15px;
                 min-width: calc(50% - 10px);
             }
         }
-    </style> 
-    
-/* </style> */
-html {
-    scroll-behavior: smooth !important;
-    -webkit-overflow-scrolling: touch; 
-    
-    /* iOS ke liye */
-}
-
-body {
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-}
-}
+    </style>
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header class="site-header">
             <div class="logo">
-                <span class="logo-icon">🛠️</span>
-                <span class="site-title">Explore Dev Tools</span>
+                <span class="site-title">ExploreDevTools</span>
             </div>
             <nav class="nav-menu">
                 <a href="#tools" class="nav-item">Tools</a>
                 <a href="about.html" class="nav-item">About</a>
                 <a href="contact.html" class="nav-item">Contact</a>
+                <a href="blog.html" class="nav-item">Blog</a>
             </nav>
         </header>
 
         <!-- Hero Section -->
         <section class="hero-section">
-      transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
-    }
-            <h1 class="hero-title">🚀 Explore Dev Tools- 12+ Free Developer Tools</h1>
-            <p class="hero-subtitle">Professional-grade tools that run in your browser. No signup, no tracking, completely free.</p>
-            <a href="#tools" class="cta-button" style="margin-top: 20px;">✨ Explore All Tools</a>
+            <h1 class="hero-title">🚀 ExploreDevTools</h1>
+            <p class="hero-subtitle">12+ free professional tools for developers, designers, and creators</p>
             
             <div class="stats-grid">
                 <div class="stat-item">
@@ -540,110 +478,100 @@ body {
 
             <!-- Category Tabs -->
             <div class="category-tabs">
-                <button class="cat-btn active" onclick="filterTools('all')">
-                    All Tools <span>12</span>
-                </button>
-                <button class="cat-btn" onclick="filterTools('dev')">
-                    💻 Development <span>2</span>
-                </button>
-                <button class="cat-btn" onclick="filterTools('image')">
-                    🖼️ Image Tools <span>3</span>
-                </button>
-                <button class="cat-btn" onclick="filterTools('text')">
-                    📝 Text Tools <span>2</span>
-                </button>
-                <button class="cat-btn" onclick="filterTools('utility')">
-                    🔧 Utilities <span>5</span>
-                </button>
+                <button class="cat-btn active" onclick="filterTools('all')">All Tools <span>12</span></button>
+                <button class="cat-btn" onclick="filterTools('dev')">💻 Dev <span>2</span></button>
+                <button class="cat-btn" onclick="filterTools('image')">🖼️ Image <span>3</span></button>
+                <button class="cat-btn" onclick="filterTools('text')">📝 Text <span>2</span></button>
+                <button class="cat-btn" onclick="filterTools('utility')">🔧 Utility <span>5</span></button>
             </div>
 
             <!-- Tools Grid -->
             <div class="tools-grid" id="toolsGrid">
-                <!-- DEVELOPMENT TOOLS (2) -->
+                <!-- Development Tools -->
                 <a href="json-formatter.html" class="tool-card" data-category="dev">
                     <div class="tool-icon">🔄</div>
                     <h3>JSON Formatter</h3>
-                    <p>Format, validate, and minify JSON data</p>
+                    <p>Format and validate JSON</p>
                     <span class="tool-tag">Dev</span>
                 </a>
                 
                 <a href="base64.html" class="tool-card" data-category="dev">
                     <div class="tool-icon">🔤</div>
                     <h3>Base64 Encoder</h3>
-                    <p>Encode/decode Base64 instantly</p>
+                    <p>Encode/decode Base64</p>
                     <span class="tool-tag">Dev</span>
                 </a>
                 
-                <!-- IMAGE TOOLS (3) -->
+                <!-- Image Tools -->
                 <a href="image-resizer.html" class="tool-card" data-category="image">
                     <div class="tool-icon">🖼️</div>
                     <h3>Image Resizer</h3>
-                    <p>Resize images instantly without quality loss</p>
+                    <p>Resize images instantly</p>
                     <span class="tool-tag">Image</span>
                 </a>
                 
                 <a href="image-compressor.html" class="tool-card" data-category="image">
                     <div class="tool-icon">🗜️</div>
                     <h3>Image Compressor</h3>
-                    <p>Reduce file size by up to 90%</p>
+                    <p>Reduce file size</p>
                     <span class="tool-tag">Image</span>
                 </a>
                 
                 <a href="background-remover.html" class="tool-card" data-category="image">
                     <div class="tool-icon">✨</div>
                     <h3>Background Remover</h3>
-                    <p>Remove image backgrounds with AI</p>
+                    <p>Remove image bg</p>
                     <span class="tool-tag">Image</span>
                 </a>
                 
-                <!-- TEXT TOOLS (2) -->
+                <!-- Text Tools -->
                 <a href="word-counter.html" class="tool-card" data-category="text">
                     <div class="tool-icon">📝</div>
                     <h3>Word Counter</h3>
-                    <p>Count words, characters & reading time</p>
+                    <p>Count words & characters</p>
                     <span class="tool-tag">Text</span>
                 </a>
                 
                 <a href="grammar-checker.html" class="tool-card" data-category="text">
                     <div class="tool-icon">✅</div>
                     <h3>Grammar Checker</h3>
-                    <p>Check spelling & grammar instantly</p>
+                    <p>Check grammar</p>
                     <span class="tool-tag">Text</span>
                 </a>
                 
-                <!-- UTILITY TOOLS (5) -->
+                <!-- Utility Tools -->
                 <a href="password-generator.html" class="tool-card" data-category="utility">
                     <div class="tool-icon">🔐</div>
                     <h3>Password Generator</h3>
-                    <p>Create strong, secure passwords</p>
+                    <p>Secure passwords</p>
                     <span class="tool-tag">Utility</span>
                 </a>
                 
                 <a href="qr-generator.html" class="tool-card" data-category="utility">
                     <div class="tool-icon">🏷️</div>
                     <h3>QR Generator</h3>
-                    <p>Create custom QR codes</p>
+                    <p>Create QR codes</p>
                     <span class="tool-tag">Utility</span>
                 </a>
                 
                 <a href="color-converter.html" class="tool-card" data-category="utility">
                     <div class="tool-icon">🎨</div>
                     <h3>Color Converter</h3>
-                    <p>HEX, RGB, HSL conversion</p>
+                    <p>HEX to RGB</p>
                     <span class="tool-tag">Utility</span>
                 </a>
                 
                 <a href="unit-converter.html" class="tool-card" data-category="utility">
                     <div class="tool-icon">📏</div>
                     <h3>Unit Converter</h3>
-                    <p>Length, weight, temperature</p>
+                    <p>Length, weight, temp</p>
                     <span class="tool-tag">Utility</span>
                 </a>
                 
                 <a href="pdf-to-jpg.html" class="tool-card" data-category="utility">
                     <div class="tool-icon">📄</div>
                     <h3>PDF to JPG</h3>
-                    <p>Convert PDF pages to images</p>
+                    <p>Convert PDF pages</p>
                     <span class="tool-tag">Utility</span>
                 </a>
             </div>
@@ -652,15 +580,15 @@ body {
         <!-- Features Section -->
         <section class="features-section">
             <div class="section-title">
-                <h2>Why Choose Explore Dev Tools?</h2>
-                <p>Built with ❤️ for developers, designers, and creators</p>
+                <h2>Why Choose Us?</h2>
+                <p>Built with ❤️ for developers</p>
             </div>
 
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">🚀</div>
-                    <h4>Blazing Fast</h4>
-                    <p>All tools run instantly in your browser</p>
+                    <h4>Fast & Free</h4>
+                    <p>All tools work instantly in your browser</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
@@ -670,33 +598,67 @@ body {
                 <div class="feature-card">
                     <div class="feature-icon">📱</div>
                     <h4>Mobile Friendly</h4>
-                    <p>Perfect on phones, tablets & desktop</p>
+                    <p>Works on all devices</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">💯</div>
-                    <h4>Completely Free</h4>
+                    <h4>100% Free</h4>
                     <p>No hidden costs, forever free</p>
-    .feature-card {
-    /* Pehle se existing properties */
-    
-    /* ✅ */
-    transform: translateZ(0);
-    will-change: transform;
-    backface-visibility: hidden;
-    }
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
         <section class="cta-section">
-            <a href="#tools" class="cta-button">🚀 Start Using Free Tools →</a>
+            <a href="#tools" class="cta-button">🚀 Explore All Tools →</a>
         </section>
 
         <!-- Footer -->
-<    </div>
-</footer>
-        <processing happens in your browser.</p>
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>ExploreDevTools</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Popular Tools</h4>
+                    <ul>
+                        <li><a href="image-compressor.html">Image Compressor</a></li>
+                        <li><a href="grammar-checker.html">Grammar Checker</a></li>
+                        <li><a href="background-remover.html">Background Remover</a></li>
+                        <li><a href="qr-generator.html">QR Generator</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Blog</h4>
+                    <ul>
+                        <li><a href="blog.html">All Posts</a></li>
+                        <li><a href="blog-password-tips.html">Password Tips</a></li>
+                        <li><a href="blog-image-compression.html">Image Tips</a></li>
+                        <li><a href="blog-grammar-tips.html">Grammar Guide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy</a></li>
+                        <li><a href="terms.html">Terms</a></li>
+                        <li><a href="cookies.html">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2026 ExploreDevTools. All tools are 100% free.</p>
+                <p style="margin-top: 10px;">Made with ❤️ | <a href="blog.html">Visit our Blog</a></p>
             </div>
         </footer>
     </div>
@@ -704,132 +666,18 @@ body {
     <!-- Filter Script -->
     <script>
         function filterTools(category) {
-            // Update active button
             document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
             event.target.classList.add('active');
             
-            // Filter tools
             const tools = document.querySelectorAll('.tool-card');
             tools.forEach(tool => {
-                if (category === 'all') {
+                if (category === 'all' || tool.dataset.category === category) {
                     tool.style.display = 'block';
                 } else {
-                    if (tool.dataset.category === category) {
-                        tool.style.display = 'block';
-                    } else {
-                        tool.style.display = 'none';
-                    }
+                    tool.style.display = 'none';
                 }
             });
         }
-
-        // Initialize counts on page load
-        window.onload = function() {
-            const categories = ['dev', 'image', 'text', 'utility'];
-            categories.forEach(cat => {
-                const count = document.querySelectorAll(`.tool-card[data-category="${cat}"]`).length;
-                const btns = document.querySelectorAll('.cat-btn');
-                btns.forEach(btn => {
-                    if (btn.textContent.includes(cat === 'dev' ? 'Development' : 
-                                              cat === 'image' ? 'Image' : 
-                                              cat === 'text' ? 'Text' : 'Utilities')) {
-                        const span = btn.querySelector('span');
-                        if (span) span.textContent = count;
-                    }
-                });
-            });
-        };
     </script>
 </body>
 </html>
-<!-- Footer -->
-<footer class="footer">
-    <div class="footer-content">
-        <!-- Company Info -->
-        <div class="footer-col">
-            <h4>🏢 ExploreDevTools</h4>
-            <ul>
-                <li><a href="index.html">🏠 Home</a></li>
-                <li><a href="#tools">🛠️ All Tools</a></li>
-                <li><a href="about.html">📖 About Us</a></li>
-                <li><a href="contact.html">📬 Contact</a></li>
-            </ul>
-        </div>
-        
-        <!-- Blog Section - NEW -->
-        <div class="footer-col">
-            <h4>📝 Blog</h4>
-            <ul>
-                <li><a href="blog.html">📚 All Posts</a></li>
-                <li><a href="blog-password-tips.html">🔐 Password Tips</a></li>
-                <li><a href="blog-image-compression.html">🖼️ Image Compression</a></li>
-                <li><a href="blog-grammar-tips.html">📝 Grammar Guide</a></li>
-                <li><a href="blog.html" style="color: #ffd700; font-weight: bold;">✨ Visit Our Blog →</a></li>
-            </ul>
-        </div>
-        
-        <!-- Development Tools -->
-        <div class="footer-col">
-            <h4>💻 Development</h4>
-            <ul>
-                <li><a href="json-formatter.html">🔄 JSON Formatter</a></li>
-                <li><a href="base64.html">🔤 Base64 Encoder</a></li>
-            </ul>
-        </div>
-        
-        <!-- Image Tools -->
-        <div class="footer-col">
-            <h4>🖼️ Image Tools</h4>
-            <ul>
-                <li><a href="image-resizer.html">📏 Image Resizer</a></li>
-                <li><a href="image-compressor.html">🗜️ Image Compressor</a></li>
-                <li><a href="background-remover.html">✨ Background Remover</a></li>
-            </ul>
-        </div>
-        
-        <!-- Text Tools -->
-        <div class="footer-col">
-            <h4>📝 Text Tools</h4>
-            <ul>
-                <li><a href="word-counter.html">📊 Word Counter</a></li>
-                <li><a href="grammar-checker.html">✅ Grammar Checker</a></li>
-            </ul>
-        </div>
-        
-        <!-- Utility Tools -->
-        <div class="footer-col">
-            <h4>🔧 Utilities</h4>
-            <ul>
-                <li><a href="password-generator.html">🔐 Password Generator</a></li>
-                <li><a href="qr-generator.html">🏷️ QR Generator</a></li>
-                <li><a href="color-converter.html">🎨 Color Converter</a></li>
-                <li><a href="unit-converter.html">📏 Unit Converter</a></li>
-                <li><a href="pdf-to-jpg.html">📄 PDF to JPG</a></li>
-            </ul>
-        </div>
-        
-        <!-- Legal & Connect -->
-        <div class="footer-col">
-            <h4>⚖️ Legal</h4>
-            <ul>
-                <li><a href="privacy.html">🔒 Privacy Policy</a></li>
-                <li><a href="terms.html">📜 Terms of Use</a></li>
-                <li><a href="cookies.html">🍪 Cookie Policy</a></li>
-            </ul>
-        </div>
-        
-        <div class="footer-col">
-            <h4>📬 Connect</h4>
-            <ul>
-                <li><a href="contact.html">📧 Contact Us</a></li>
-                <li><a href="mailto:hello@exploredevtools.com">✉️ hello@exploredevtools.com</a></li>
-            </ul>
-        </div>
-    </div>
-    
-    <!-- Footer Bottom -->
-    <div class="footer-bottom">
-        <p>© 2026 ExploreDevTools. All 12 tools are 100% free and open source.</p>
-        <p style="margin-top: 10px; font-size: 0.9em;">Made with ❤️ for developers everywhere | <a href="blog.html" style="color: #ffd700; font-weight: bold;">📚 Explore Our Blog</a></p>
-    </div>
-</footer>
