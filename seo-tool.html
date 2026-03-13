@@ -741,223 +741,409 @@
     </div>
 
     <script>
-        // Keyword Database
-        const keywordDatabase = {
-            "seo tools": {
-                volume: "12,500",
-                cpc: "₹45",
-                competition: "High",
-                difficulty: 78,
-                trend: "+15%",
-                related: [
-                    { keyword: "best seo tools", volume: "4,200" },
-                    { keyword: "free seo tools", volume: "8,900" },
-                    { keyword: "seo tools list", volume: "2,300" }
-                ],
-                questions: [
-                    "What are the best seo tools for beginners?",
-                    "How to use seo tools effectively?",
-                    "Which seo tools are free?"
-                ]
-            },
-            "content marketing": {
-                volume: "18,200",
-                cpc: "₹55",
-                competition: "High",
-                difficulty: 72,
-                trend: "+8%",
-                related: [
-                    { keyword: "content marketing strategy", volume: "6,500" },
-                    { keyword: "content marketing examples", volume: "3,200" }
-                ],
-                questions: [
-                    "What is content marketing?",
-                    "How to create a content marketing strategy?"
-                ]
-            },
-            "keyword research": {
-                volume: "8,900",
-                cpc: "₹25",
-                competition: "Medium",
-                difficulty: 65,
-                trend: "+12%",
-                related: [
-                    { keyword: "keyword research tool", volume: "5,200" },
-                    { keyword: "google keyword planner", volume: "22,000" }
-                ],
-                questions: [
-                    "How to do keyword research?",
-                    "What are the best keyword research tools?"
-                ]
-            }
+    // Keyword Database with 5+ suggestions
+    const keywordDatabase = {
+        "seo tools": {
+            volume: "12,500",
+            cpc: "₹45",
+            competition: "High",
+            difficulty: 78,
+            trend: "+15%",
+            related: [
+                { keyword: "best seo tools", volume: "4,200" },
+                { keyword: "free seo tools", volume: "8,900" },
+                { keyword: "seo tools list", volume: "2,300" },
+                { keyword: "seo tools 2026", volume: "1,800" },
+                { keyword: "seo audit tools", volume: "3,200" },
+                { keyword: "keyword research tools", volume: "5,400" },
+                { keyword: "seo software", volume: "2,900" }
+            ],
+            questions: [
+                "What are the best seo tools for beginners?",
+                "How to use seo tools effectively?",
+                "Which seo tools are free?",
+                "Why use seo tools for website ranking?",
+                "When to use seo audit tools?",
+                "How to choose seo tools for business?",
+                "What is the cost of seo tools?"
+            ]
+        },
+        "content marketing": {
+            volume: "18,200",
+            cpc: "₹55",
+            competition: "High",
+            difficulty: 72,
+            trend: "+8%",
+            related: [
+                { keyword: "content marketing strategy", volume: "6,500" },
+                { keyword: "content marketing examples", volume: "3,200" },
+                { keyword: "b2b content marketing", volume: "2,800" },
+                { keyword: "content marketing tools", volume: "4,100" },
+                { keyword: "content marketing tips", volume: "2,400" },
+                { keyword: "content marketing plan", volume: "1,900" },
+                { keyword: "content marketing ideas", volume: "3,000" }
+            ],
+            questions: [
+                "What is content marketing?",
+                "How to create a content marketing strategy?",
+                "Why content marketing is important?",
+                "What are content marketing examples?",
+                "How to measure content marketing success?",
+                "What is B2B content marketing?",
+                "How to start content marketing?"
+            ]
+        },
+        "keyword research": {
+            volume: "8,900",
+            cpc: "₹25",
+            competition: "Medium",
+            difficulty: 65,
+            trend: "+12%",
+            related: [
+                { keyword: "keyword research tool", volume: "5,200" },
+                { keyword: "keyword research tips", volume: "2,100" },
+                { keyword: "google keyword planner", volume: "22,000" },
+                { keyword: "long tail keywords", volume: "3,800" },
+                { keyword: "keyword difficulty", volume: "1,900" },
+                { keyword: "keyword research guide", volume: "1,600" },
+                { keyword: "semrush keyword research", volume: "2,700" }
+            ],
+            questions: [
+                "How to do keyword research?",
+                "What are the best keyword research tools?",
+                "Why keyword research is important for seo?",
+                "How to find long tail keywords?",
+                "What is keyword difficulty?",
+                "How to use google keyword planner?",
+                "What are LSI keywords?"
+            ]
+        },
+        "digital marketing": {
+            volume: "22,000",
+            cpc: "₹35",
+            competition: "High",
+            difficulty: 68,
+            trend: "+10%",
+            related: [
+                { keyword: "digital marketing strategy", volume: "8,500" },
+                { keyword: "digital marketing course", volume: "14,000" },
+                { keyword: "digital marketing agency", volume: "6,200" },
+                { keyword: "digital marketing tips", volume: "3,400" },
+                { keyword: "digital marketing tools", volume: "4,800" },
+                { keyword: "digital marketing trends 2026", volume: "2,900" },
+                { keyword: "digital marketing jobs", volume: "5,100" }
+            ],
+            questions: [
+                "What is digital marketing?",
+                "How to start digital marketing?",
+                "What are the types of digital marketing?",
+                "How to become a digital marketer?",
+                "What is SEO in digital marketing?",
+                "How to create a digital marketing strategy?",
+                "What are the best digital marketing tools?"
+            ]
+        },
+        "local seo": {
+            volume: "6,200",
+            cpc: "₹15",
+            competition: "Medium",
+            difficulty: 45,
+            trend: "+22%",
+            related: [
+                { keyword: "local seo services", volume: "3,100" },
+                { keyword: "local seo tips", volume: "1,800" },
+                { keyword: "google my business", volume: "12,000" },
+                { keyword: "local seo checklist", volume: "1,400" },
+                { keyword: "local seo company", volume: "2,200" },
+                { keyword: "local seo guide", volume: "1,100" },
+                { keyword: "local seo ranking factors", volume: "900" }
+            ],
+            questions: [
+                "What is local SEO?",
+                "How to improve local SEO?",
+                "What is Google My Business?",
+                "How to rank for local search?",
+                "What are local SEO ranking factors?",
+                "How to get local citations?",
+                "Why local SEO is important for small business?"
+            ]
+        },
+        "ecommerce seo": {
+            volume: "4,800",
+            cpc: "₹85",
+            competition: "High",
+            difficulty: 82,
+            trend: "+18%",
+            related: [
+                { keyword: "ecommerce seo tips", volume: "2,200" },
+                { keyword: "shopify seo", volume: "3,600" },
+                { keyword: "woocommerce seo", volume: "2,100" },
+                { keyword: "ecommerce seo checklist", volume: "1,300" },
+                { keyword: "ecommerce seo strategy", volume: "1,800" },
+                { keyword: "product page seo", volume: "1,200" },
+                { keyword: "ecommerce seo agency", volume: "1,600" }
+            ],
+            questions: [
+                "How to do SEO for ecommerce?",
+                "Best ecommerce SEO practices?",
+                "How to optimize product pages for SEO?",
+                "What is Shopify SEO?",
+                "How to improve ecommerce site ranking?",
+                "What are ecommerce SEO tips?",
+                "How to do keyword research for ecommerce?"
+            ]
+        },
+        "link building": {
+            volume: "5,500",
+            cpc: "₹65",
+            competition: "High",
+            difficulty: 75,
+            trend: "+9%",
+            related: [
+                { keyword: "link building strategies", volume: "2,800" },
+                { keyword: "backlink building", volume: "3,200" },
+                { keyword: "guest posting", volume: "4,100" },
+                { keyword: "link building tools", volume: "1,900" },
+                { keyword: "white hat link building", volume: "1,200" },
+                { keyword: "link building services", volume: "2,400" },
+                { keyword: "backlink checker", volume: "5,000" }
+            ],
+            questions: [
+                "What is link building?",
+                "How to build backlinks?",
+                "What are link building strategies?",
+                "What is guest posting?",
+                "How to check backlinks?",
+                "What are white hat link building techniques?",
+                "How to get high quality backlinks?"
+            ]
+        },
+        "on page seo": {
+            volume: "4,200",
+            cpc: "₹40",
+            competition: "Medium",
+            difficulty: 58,
+            trend: "+14%",
+            related: [
+                { keyword: "on page seo checklist", volume: "2,100" },
+                { keyword: "on page seo techniques", volume: "1,800" },
+                { keyword: "meta tags seo", volume: "2,400" },
+                { keyword: "title tag optimization", volume: "1,500" },
+                { keyword: "header tags seo", volume: "1,200" },
+                { keyword: "internal linking", volume: "1,900" },
+                { keyword: "image alt text", volume: "1,100" }
+            ],
+            questions: [
+                "What is on page SEO?",
+                "How to optimize on page SEO?",
+                "What is on page SEO checklist?",
+                "How to optimize title tags?",
+                "What are meta tags?",
+                "How to do internal linking?",
+                "What are header tags in SEO?"
+            ]
+        },
+        "technical seo": {
+            volume: "3,600",
+            cpc: "₹50",
+            competition: "High",
+            difficulty: 70,
+            trend: "+11%",
+            related: [
+                { keyword: "technical seo audit", volume: "1,800" },
+                { keyword: "site speed optimization", volume: "2,200" },
+                { keyword: "mobile seo", volume: "1,900" },
+                { keyword: "structured data", volume: "1,400" },
+                { keyword: "canonical tags", volume: "1,100" },
+                { keyword: "xml sitemap", volume: "1,300" },
+                { keyword: "robots.txt", volume: "1,000" }
+            ],
+            questions: [
+                "What is technical SEO?",
+                "How to do technical SEO audit?",
+                "How to improve site speed?",
+                "What is mobile SEO?",
+                "What is structured data?",
+                "How to use canonical tags?",
+                "What is XML sitemap?"
+            ]
+        }
+    };
+
+    function analyzeKeyword() {
+        const keyword = document.getElementById('keywordInput').value.trim().toLowerCase();
+        
+        if (!keyword) {
+            alert('Please enter a keyword');
+            return;
+        }
+
+        document.getElementById('loadingOverlay').style.display = 'flex';
+        document.getElementById('analyzeBtn').disabled = true;
+
+        setTimeout(() => {
+            const data = keywordDatabase[keyword] || generateMockData(keyword);
+            displayResults(keyword, data);
+            
+            document.getElementById('loadingOverlay').style.display = 'none';
+            document.getElementById('analyzeBtn').disabled = false;
+            document.getElementById('results').style.display = 'block';
+        }, 1000);
+    }
+
+    function generateMockData(keyword) {
+        const randomVolume = Math.floor(Math.random() * 15000) + 1000;
+        const randomDifficulty = Math.floor(Math.random() * 80) + 10;
+        
+        let cpcValue;
+        if (randomDifficulty > 70) {
+            cpcValue = Math.floor(Math.random() * 80) + 40;
+        } else if (randomDifficulty > 40) {
+            cpcValue = Math.floor(Math.random() * 30) + 10;
+        } else {
+            cpcValue = Math.floor(Math.random() * 8) + 2;
+        }
+        
+        return {
+            volume: randomVolume.toLocaleString(),
+            cpc: "₹" + cpcValue,
+            competition: ["Low", "Medium", "High"][Math.floor(Math.random() * 3)],
+            difficulty: randomDifficulty,
+            trend: (Math.random() * 30 - 5).toFixed(0) + "%",
+            related: [
+                { keyword: "best " + keyword, volume: Math.floor(randomVolume * 0.6) },
+                { keyword: "free " + keyword, volume: Math.floor(randomVolume * 0.7) },
+                { keyword: keyword + " tools", volume: Math.floor(randomVolume * 0.5) },
+                { keyword: keyword + " guide", volume: Math.floor(randomVolume * 0.4) },
+                { keyword: keyword + " tips", volume: Math.floor(randomVolume * 0.3) },
+                { keyword: keyword + " examples", volume: Math.floor(randomVolume * 0.35) },
+                { keyword: keyword + " 2026", volume: Math.floor(randomVolume * 0.25) }
+            ],
+            questions: [
+                "What is " + keyword + "?",
+                "How to use " + keyword + "?",
+                "Why " + keyword + " is important?",
+                "Best practices for " + keyword + "?",
+                keyword + " tips and tricks?",
+                "How to learn " + keyword + "?",
+                keyword + " examples?"
+            ]
         };
+    }
 
-        function analyzeKeyword() {
-            const keyword = document.getElementById('keywordInput').value.trim().toLowerCase();
-            
-            if (!keyword) {
-                alert('Please enter a keyword');
-                return;
-            }
-
-            document.getElementById('loadingOverlay').style.display = 'flex';
-            document.getElementById('analyzeBtn').disabled = true;
-
-            setTimeout(() => {
-                const data = keywordDatabase[keyword] || generateMockData(keyword);
-                displayResults(keyword, data);
-                
-                document.getElementById('loadingOverlay').style.display = 'none';
-                document.getElementById('analyzeBtn').disabled = false;
-                document.getElementById('results').style.display = 'block';
-            }, 1000);
+    function displayResults(keyword, data) {
+        let difficultyColor = '#10b981';
+        let difficultyMessage = '';
+        
+        if (data.difficulty > 70) {
+            difficultyColor = '#ef4444';
+            difficultyMessage = '🔥 High competition - Needs strong authority';
+        } else if (data.difficulty > 40) {
+            difficultyColor = '#f59e0b';
+            difficultyMessage = '⚡ Medium difficulty - Good opportunity';
+        } else {
+            difficultyColor = '#10b981';
+            difficultyMessage = '✅ Easy to rank - Perfect for new websites';
         }
 
-        function generateMockData(keyword) {
-            const randomVolume = Math.floor(Math.random() * 15000) + 1000;
-            const randomDifficulty = Math.floor(Math.random() * 80) + 10;
-            
-            let cpcValue;
-            if (randomDifficulty > 70) {
-                cpcValue = Math.floor(Math.random() * 80) + 40;
-            } else if (randomDifficulty > 40) {
-                cpcValue = Math.floor(Math.random() * 30) + 10;
-            } else {
-                cpcValue = Math.floor(Math.random() * 8) + 2;
-            }
-            
-            return {
-                volume: randomVolume.toLocaleString(),
-                cpc: "₹" + cpcValue,
-                competition: ["Low", "Medium", "High"][Math.floor(Math.random() * 3)],
-                difficulty: randomDifficulty,
-                trend: (Math.random() * 30 - 5).toFixed(0) + "%",
-                related: [
-                    { keyword: "best " + keyword, volume: Math.floor(randomVolume * 0.6) },
-                    { keyword: "free " + keyword, volume: Math.floor(randomVolume * 0.7) }
-                ],
-                questions: [
-                    "What is " + keyword + "?",
-                    "How to use " + keyword + "?"
-                ]
-            };
-        }
-
-        function displayResults(keyword, data) {
-            let difficultyColor = '#10b981';
-            let difficultyMessage = '';
-            
-            if (data.difficulty > 70) {
-                difficultyColor = '#ef4444';
-                difficultyMessage = '🔥 High competition - Needs strong authority';
-            } else if (data.difficulty > 40) {
-                difficultyColor = '#f59e0b';
-                difficultyMessage = '⚡ Medium difficulty - Good opportunity';
-            } else {
-                difficultyColor = '#10b981';
-                difficultyMessage = '✅ Easy to rank - Perfect for new websites';
-            }
-
-            const html = `
-                <div class="keyword-header">
-                    <div class="keyword-title">
-                        <div class="keyword-icon"><i class="fas fa-key"></i></div>
-                        <span class="keyword-text">"${keyword}"</span>
-                    </div>
-                    <div class="volume-badge">
-                        <i class="fas fa-chart-bar"></i>
-                        <span>${data.volume} monthly searches</span>
-                    </div>
+        const html = `
+            <div class="keyword-header">
+                <div class="keyword-title">
+                    <div class="keyword-icon"><i class="fas fa-key"></i></div>
+                    <span class="keyword-text">"${keyword}"</span>
                 </div>
-
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-icon"><i class="fas fa-search"></i></div>
-                        <div class="metric-value">${data.volume}</div>
-                        <div class="metric-label">Search Volume</div>
-                        <div class="metric-trend">${data.trend}</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon"><i class="fas fa-indian-rupee-sign"></i></div>
-                        <div class="metric-value">${data.cpc}</div>
-                        <div class="metric-label">Cost Per Click (INR)</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-icon"><i class="fas fa-trophy"></i></div>
-                        <div class="metric-value">${data.competition}</div>
-                        <div class="metric-label">Competition</div>
-                    </div>
+                <div class="volume-badge">
+                    <i class="fas fa-chart-bar"></i>
+                    <span>${data.volume} monthly searches</span>
                 </div>
+            </div>
 
-                <div class="difficulty-card">
-                    <div class="difficulty-header">
-                        <div class="difficulty-title">
-                            <i class="fas fa-chart-line"></i>
-                            <h3>Keyword Difficulty Score</h3>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fas fa-search"></i></div>
+                    <div class="metric-value">${data.volume}</div>
+                    <div class="metric-label">Search Volume</div>
+                    <div class="metric-trend">${data.trend}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fas fa-indian-rupee-sign"></i></div>
+                    <div class="metric-value">${data.cpc}</div>
+                    <div class="metric-label">Cost Per Click (INR)</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="metric-value">${data.competition}</div>
+                    <div class="metric-label">Competition</div>
+                </div>
+            </div>
+
+            <div class="difficulty-card">
+                <div class="difficulty-header">
+                    <div class="difficulty-title">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Keyword Difficulty Score</h3>
+                    </div>
+                    <div class="difficulty-score">${data.difficulty}/100</div>
+                </div>
+                <div class="difficulty-bar-container">
+                    <div class="difficulty-bar" style="width: ${data.difficulty}%;"></div>
+                </div>
+                <div class="difficulty-labels">
+                    <span>Easy</span><span>Medium</span><span>Hard</span>
+                </div>
+                <div class="difficulty-message" style="border-left-color: ${difficultyColor};">
+                    <i class="fas fa-info-circle" style="color: ${difficultyColor};"></i>
+                    ${difficultyMessage}
+                </div>
+            </div>
+
+            <div class="related-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-link"></i> Related Keywords (${data.related.length} suggestions)</h3>
+                </div>
+                <div class="keywords-grid">
+                    ${data.related.map(item => `
+                        <div class="keyword-chip" onclick="document.getElementById('keywordInput').value='${item.keyword}'; analyzeKeyword();">
+                            <span>${item.keyword}</span>
+                            <span class="keyword-chip-volume">${item.volume}</span>
                         </div>
-                        <div class="difficulty-score">${data.difficulty}/100</div>
-                    </div>
-                    <div class="difficulty-bar-container">
-                        <div class="difficulty-bar" style="width: ${data.difficulty}%;"></div>
-                    </div>
-                    <div class="difficulty-labels">
-                        <span>Easy</span><span>Medium</span><span>Hard</span>
-                    </div>
-                    <div class="difficulty-message" style="border-left-color: ${difficultyColor};">
-                        <i class="fas fa-info-circle" style="color: ${difficultyColor};"></i>
-                        ${difficultyMessage}
-                    </div>
+                    `).join('')}
                 </div>
+            </div>
 
-                <div class="related-section">
-                    <div class="section-header">
-                        <h3><i class="fas fa-link"></i> Related Keywords</h3>
-                    </div>
-                    <div class="keywords-grid">
-                        ${data.related.map(item => `
-                            <div class="keyword-chip" onclick="document.getElementById('keywordInput').value='${item.keyword}'; analyzeKeyword();">
-                                <span>${item.keyword}</span>
-                                <span class="keyword-chip-volume">${item.volume}</span>
-                            </div>
-                        `).join('')}
-                    </div>
+            <div class="related-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-question-circle"></i> People Also Ask (${data.questions.length} questions)</h3>
                 </div>
-
-                <div class="related-section">
-                    <div class="section-header">
-                        <h3><i class="fas fa-question-circle"></i> People Also Ask</h3>
-                    </div>
-                    <div class="questions-grid">
-                        ${data.questions.map(q => `
-                            <div class="question-item" onclick="document.getElementById('keywordInput').value='${q}'; analyzeKeyword();">
-                                <i class="fas fa-question"></i>
-                                <span>${q}</span>
-                            </div>
-                        `).join('')}
-                    </div>
+                <div class="questions-grid">
+                    ${data.questions.map(q => `
+                        <div class="question-item" onclick="document.getElementById('keywordInput').value='${q}'; analyzeKeyword();">
+                            <i class="fas fa-question"></i>
+                            <span>${q}</span>
+                        </div>
+                    `).join('')}
                 </div>
-            `;
+            </div>
+        `;
 
-            document.getElementById('results').innerHTML = html;
-        }
+        document.getElementById('results').innerHTML = html;
+    }
 
-        // Event Listeners
-        document.getElementById('analyzeBtn').addEventListener('click', function(e) {
+    // Event Listeners
+    document.getElementById('analyzeBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        analyzeKeyword();
+    });
+
+    document.getElementById('keywordInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
             e.preventDefault();
             analyzeKeyword();
-        });
+        }
+    });
 
-        document.getElementById('keywordInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                analyzeKeyword();
-            }
-        });
-
-        // Auto analyze on load
-        window.onload = function() {
-            analyzeKeyword();
-        };
-    </script>
-</body>
-</html>
+    // Auto analyze on load
+    window.onload = function() {
+        analyzeKeyword();
+    };
+</script>                                   
