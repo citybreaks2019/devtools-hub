@@ -656,14 +656,12 @@
         }
 
         document.getElementById('loadingOverlay').style.display = 'flex';
-        document.getElementById('searchBtn').disabled = true;
 
         setTimeout(() => {
             const data = keywordDatabase[keyword] || generateMockData(keyword);
             displayResults(keyword, data);
             
             document.getElementById('loadingOverlay').style.display = 'none';
-            document.getElementById('searchBtn').disabled = false;
             document.getElementById('results').style.display = 'block';
         }, 1500);
     }
