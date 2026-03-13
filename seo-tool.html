@@ -14,9 +14,32 @@
     
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            /* ===== FIX BLUE BOTTOM SPACE ===== */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.tool-card {
+    flex: 1;
+}
+
+.footer {
+    margin-top: auto;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 30px;
+    margin-top: 30px;
+}
+        
         }
 
         :root {
