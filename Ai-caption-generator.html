@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Caption Generator</title>
+<style>
+body { font-family: Arial; background:#0f172a; color:#fff; padding:20px; }
+.container { max-width:600px; margin:auto; background:#1e293b; padding:20px; border-radius:10px; }
+input, button { width:100%; padding:10px; margin-top:10px; border:none; border-radius:5px; }
+.generate-btn { background:#22c55e; }
+.clear-btn { background:#ef4444; }
+.output { margin-top:15px; padding:10px; background:#020617; border-radius:5px; }
+.links a { color:#38bdf8; display:block; margin-top:5px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>AI Caption Generator</h2>
+
+<input type="text" id="keyword" placeholder="Enter keyword (coffee, travel...)">
+
+<button class="generate-btn" onclick="generateCaption()">Generate Caption</button>
+<button class="clear-btn" onclick="clearCaption()">Clear</button>
+
+<div class="output" id="output"></div>
+
+<div class="links">
+<h4>Try Other Tools:</h4>
+<a href="/hashtag-generator.html">Hashtag Generator</a>
+<a href="/word-counter.html">Word Counter</a>
+</div>
+</div>
+
+<script>
+function generateCaption() {
+    let keyword = document.getElementById("keyword").value;
+
+    if(!keyword) return;
+
+    let captions = [
+        `Living my best ${keyword} life ✨`,
+        `${keyword} vibes only 😎`,
+        `Can't get enough of ${keyword} ❤️`,
+        `${keyword} moments that matter 📸`,
+        `Just another day with ${keyword} ☕`
+    ];
+
+    let random = captions[Math.floor(Math.random() * captions.length)];
+
+    document.getElementById("output").innerHTML =
+        "<span style='color:#22c55e'>" + random + "</span>";
+}
+
+function clearCaption() {
+    document.getElementById("keyword").value = "";
+    document.getElementById("output").innerHTML = "";
+}
+</script>
+
+</body>
+</html>

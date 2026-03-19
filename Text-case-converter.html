@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Text Case Converter</title>
+<style>
+body { font-family: Arial; background:#020617; color:#fff; padding:20px; }
+.container { max-width:600px; margin:auto; background:#1e293b; padding:20px; border-radius:10px; }
+textarea { width:100%; height:150px; padding:10px; border-radius:5px; }
+button { width:100%; padding:10px; margin-top:10px; border:none; border-radius:5px; cursor:pointer; }
+.btn { background:#22c55e; }
+.clear-btn { background:#ef4444; }
+.links a { color:#38bdf8; display:block; margin-top:5px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>Text Case Converter</h2>
+
+<textarea id="text" placeholder="Enter text..."></textarea>
+
+<button class="btn" onclick="toUpper()">UPPERCASE</button>
+<button class="btn" onclick="toLower()">lowercase</button>
+<button class="btn" onclick="toCapitalize()">Capitalize</button>
+<button class="clear-btn" onclick="clearText()">Clear</button>
+
+<div class="links">
+<h4>Try Other Tools:</h4>
+<a href="/grammar-checker.html">Grammar Checker</a>
+<a href="/word-counter.html">Word Counter</a>
+</div>
+</div>
+
+<script>
+function toUpper() {
+    document.getElementById("text").value =
+    document.getElementById("text").value.toUpperCase();
+}
+
+function toLower() {
+    document.getElementById("text").value =
+    document.getElementById("text").value.toLowerCase();
+}
+
+function toCapitalize() {
+    let text = document.getElementById("text").value;
+    document.getElementById("text").value =
+    text.replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function clearText() {
+    document.getElementById("text").value = "";
+}
+</script>
+
+</body>
+</html>
