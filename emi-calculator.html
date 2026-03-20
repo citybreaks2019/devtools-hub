@@ -6,13 +6,29 @@
 <style>
 body{font-family:Poppins;background:#f5f6ff;margin:0;}
 .top-bar{display:flex;justify-content:space-between;background:#6c5ce7;padding:12px;}
-.nav-btn{background:#fff;color:#6c5ce7;padding:8px 12px;border-radius:8px;text-decoration:none;}
-.title{text-align:center;color:#6c5ce7;margin:20px;}
-.container{max-width:400px;margin:auto;background:#fff;padding:25px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.1);}
-input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:1px solid #ddd;}
-button{width:100%;padding:12px;background:#6c5ce7;color:#fff;border:none;border-radius:8px;margin-top:5px;}
+.nav-btn{background:#fff;color:#6c5ce7;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:600;}
+.title{text-align:center;margin:20px;color:#6c5ce7;}
+
+.container{
+max-width:400px;margin:auto;background:#fff;padding:25px;
+border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+input{
+width:100%;padding:14px;margin-bottom:15px;
+border-radius:10px;border:1px solid #ddd;font-size:16px;
+}
+
+button{
+width:100%;padding:14px;margin-top:10px;
+border:none;border-radius:10px;background:#6c5ce7;
+color:#fff;font-weight:600;cursor:pointer;
+}
+
+.result{margin-top:20px;font-size:1.2em;}
 </style>
 </head>
+
 <body>
 
 <div class="top-bar">
@@ -30,16 +46,20 @@ button{width:100%;padding:12px;background:#6c5ce7;color:#fff;border:none;border-
 <button onclick="calc()">Calculate EMI</button>
 <button onclick="reset()">Clear</button>
 
-<h3 id="res"></h3>
+<div class="result" id="res"></div>
 </div>
 
 <script>
 function calc(){
 let P=loan.value,R=rate.value/1200,N=time.value;
+if(!P||!R||!N)return;
 let emi=P*R*Math.pow(1+R,N)/(Math.pow(1+R,N)-1);
-res.innerText="EMI: ₹"+Math.round(emi);
+res.innerText="Monthly EMI: ₹"+Math.round(emi);
 }
-function reset(){loan.value="";rate.value="";time.value="";res.innerText="";}
+function reset(){
+loan.value="";rate.value="";time.value="";
+res.innerText="";
+}
 </script>
 
 </body>
