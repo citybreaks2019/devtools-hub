@@ -1,59 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>EMI Calculator India</title>
+<title>EMI Calculator</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 <style>
-body { font-family: Arial; background:#0f172a; color:#fff; padding:20px; }
-.container { max-width:400px; margin:auto; background:#1e293b; padding:20px; border-radius:10px; }
-input, button { width:100%; padding:10px; margin-top:10px; border:none; border-radius:5px; }
-.calc-btn { background:#22c55e; }
-.clear-btn { background:#ef4444; }
-.result span { display:block; margin-top:5px; }
-.links a { color:#38bdf8; display:block; margin-top:5px; }
+body{font-family:Poppins;background:#f5f6ff;margin:0;}
+.top-bar{display:flex;justify-content:space-between;background:#6c5ce7;padding:12px;}
+.nav-btn{background:#fff;color:#6c5ce7;padding:8px 12px;border-radius:8px;text-decoration:none;}
+.title{text-align:center;color:#6c5ce7;margin:20px;}
+.container{max-width:400px;margin:auto;background:#fff;padding:25px;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.1);}
+input{width:100%;padding:12px;margin:10px 0;border-radius:8px;border:1px solid #ddd;}
+button{width:100%;padding:12px;background:#6c5ce7;color:#fff;border:none;border-radius:8px;margin-top:5px;}
 </style>
 </head>
 <body>
 
-<div class="container">
-<h2>EMI Calculator</h2>
-
-<input type="number" id="loan" placeholder="Loan Amount ₹">
-<input type="number" id="rate" placeholder="Interest Rate (%)">
-<input type="number" id="time" placeholder="Time (months)">
-
-<button class="calc-btn" onclick="calculateEMI()">Calculate EMI</button>
-<button class="clear-btn" onclick="clearEMI()">Clear</button>
-
-<div class="result" id="result"></div>
-
-<div class="links">
-<h4>Try Other Tools:</h4>
-<a href="/gst-calculator.html">GST Calculator</a>
-<a href="/word-counter.html">Word Counter</a>
+<div class="top-bar">
+<a href="index.html" class="nav-btn">🏠 Home</a>
+<button onclick="history.back()" class="nav-btn">⬅ Back</button>
 </div>
+
+<h2 class="title">EMI Calculator</h2>
+
+<div class="container">
+<input id="loan" placeholder="Loan Amount">
+<input id="rate" placeholder="Interest Rate (%)">
+<input id="time" placeholder="Months">
+
+<button onclick="calc()">Calculate EMI</button>
+<button onclick="reset()">Clear</button>
+
+<h3 id="res"></h3>
 </div>
 
 <script>
-function calculateEMI() {
-    let P = document.getElementById("loan").value;
-    let R = document.getElementById("rate").value / 12 / 100;
-    let N = document.getElementById("time").value;
-
-    if(!P || !R || !N) return;
-
-    let EMI = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
-
-    document.getElementById("result").innerHTML =
-    `<span style="color:#22c55e">Monthly EMI: ₹${EMI.toFixed(2)}</span>`;
+function calc(){
+let P=loan.value,R=rate.value/1200,N=time.value;
+let emi=P*R*Math.pow(1+R,N)/(Math.pow(1+R,N)-1);
+res.innerText="EMI: ₹"+Math.round(emi);
 }
-
-function clearEMI() {
-    document.getElementById("loan").value = "";
-    document.getElementById("rate").value = "";
-    document.getElementById("time").value = "";
-    document.getElementById("result").innerHTML = "";
-}
+function reset(){loan.value="";rate.value="";time.value="";res.innerText="";}
 </script>
 
 </body>
