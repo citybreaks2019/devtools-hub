@@ -1,59 +1,184 @@
-   <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Grammar Checker</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
 <style>
-body { font-family: Arial; background:#020617; color:#fff; padding:20px; }
-.container { max-width:600px; margin:auto; background:#1e293b; padding:20px; border-radius:10px; }
-textarea { width:100%; height:150px; padding:10px; border-radius:5px; }
-button { width:100%; padding:10px; margin-top:10px; border:none; border-radius:5px; cursor:pointer; }
-.check-btn { background:#22c55e; color:white; }
-.clear-btn { background:#ef4444; color:white; }
-.result { margin-top:15px; }
-.links a { color:#38bdf8; display:block; margin-top:5px; }
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:Poppins;
+background:#f5f6ff;
+}
+
+/* TOP BAR */
+.top-bar{
+display:flex;
+justify-content:space-between;
+background:#6c5ce7;
+padding:12px 15px;
+}
+
+.nav-btn{
+background:#fff;
+color:#6c5ce7;
+padding:8px 14px;
+border-radius:8px;
+text-decoration:none;
+font-weight:600;
+border:none;
+}
+
+/* TITLE */
+.title{
+text-align:center;
+margin:20px;
+color:#6c5ce7;
+}
+
+/* MAIN CARD */
+.container{
+max-width:600px;
+margin:auto;
+background:#fff;
+padding:25px;
+border-radius:15px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* TEXTAREA */
+textarea{
+width:100%;
+height:150px;
+padding:12px;
+border-radius:10px;
+border:1px solid #ddd;
+margin-bottom:15px;
+font-size:15px;
+}
+
+/* BUTTONS */
+button{
+width:100%;
+padding:14px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+font-weight:600;
+cursor:pointer;
+}
+
+.check-btn{
+background:#6c5ce7;
+color:#fff;
+}
+
+.clear-btn{
+background:#ff7675;
+color:#fff;
+}
+
+button:hover{
+opacity:0.9;
+}
+
+/* RESULT */
+.result{
+margin-top:20px;
+padding:15px;
+border-radius:10px;
+background:#f9f9ff;
+font-size:15px;
+line-height:1.6;
+}
+
+/* SUCCESS / ERROR */
+.success{
+color:#00b894;
+font-weight:600;
+}
+
+.error{
+color:#d63031;
+font-weight:500;
+}
+
+/* LINKS */
+.links{
+margin-top:20px;
+}
+
+.links a{
+display:block;
+margin-top:8px;
+color:#6c5ce7;
+text-decoration:none;
+font-weight:500;
+}
+
+.links a:hover{
+text-decoration:underline;
+}
 </style>
 </head>
+
 <body>
 
+<!-- TOP NAV -->
+<div class="top-bar">
+<a href="index.html" class="nav-btn">🏠 Home</a>
+<button onclick="history.back()" class="nav-btn">⬅ Back</button>
+</div>
+
+<h2 class="title">📝 Grammar Checker</h2>
+
 <div class="container">
-<h2>Grammar Checker</h2>
 
-<textarea id="inputText" placeholder="Enter text..."></textarea>
+<textarea id="inputText" placeholder="Enter text here..."></textarea>
 
-<button class="check-btn" onclick="checkGrammar()">Check</button>
+<button class="check-btn" onclick="checkGrammar()">Check Grammar</button>
 <button class="clear-btn" onclick="clearGrammar()">Clear</button>
 
 <div class="result" id="result"></div>
 
 <div class="links">
-<h4>Try Other Tools:</h4>
-<a href="/gst-calculator.html">GST Calculator</a>
-<a href="/word-counter.html">Word Counter</a>
+<h4>🔗 Try Other Tools:</h4>
+<a href="gst-calculator.html">GST Calculator</a>
+<a href="word-counter.html">Word Counter</a>
+<a href="ai-caption-generator.html">AI Caption Tool</a>
+<a href="paraphrasing-ai-tool.html">Paraphrasing Tool</a>
 </div>
+
 </div>
 
 <script>
 function checkGrammar() {
-    let text = document.getElementById("inputText").value;
-    let errors = [];
+let text = document.getElementById("inputText").value.toLowerCase();
+let errors = [];
 
-    if (text.includes("dont")) errors.push("<span style='color:#ef4444'>Use 'don't'</span>");
-    if (text.includes("didn't went")) errors.push("<span style='color:#ef4444'>Use 'didn't go'</span>");
-    if (text.includes("is many")) errors.push("<span style='color:#ef4444'>Use 'are many'</span>");
+if (text.includes("dont")) errors.push("<span class='error'>Use 'don't'</span>");
+if (text.includes("didn't went")) errors.push("<span class='error'>Use 'didn't go'</span>");
+if (text.includes("is many")) errors.push("<span class='error'>Use 'are many'</span>");
 
-    if (errors.length === 0) {
-        document.getElementById("result").innerHTML = "<span style='color:#22c55e'>No errors found ✅</span>";
-    } else {
-        document.getElementById("result").innerHTML = errors.join("<br>");
-    }
+if (errors.length === 0 && text.trim() !== "") {
+document.getElementById("result").innerHTML = "<span class='success'>No errors found ✅</span>";
+} else if (text.trim() === "") {
+document.getElementById("result").innerHTML = "<span class='error'>Please enter text</span>";
+} else {
+document.getElementById("result").innerHTML = errors.join("<br>");
+}
 }
 
 function clearGrammar() {
-    document.getElementById("inputText").value = "";
-    document.getElementById("result").innerHTML = "";
+document.getElementById("inputText").value = "";
+document.getElementById("result").innerHTML = "";
 }
 </script>
 
 </body>
-</html>         
+</html>
