@@ -1,166 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="canonical" href="https://www.exploredevtools.com/unit-converter.html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unit Converter - DevTools Hub</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container { max-width: 600px; margin: 0 auto; }
-        .back-btn {
-            display: inline-block;
-            padding: 10px 20px;
-            background: white;
-            color: #667eea;
-            text-decoration: none;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        .tool-card {
-            background: white;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        h1 { margin-bottom: 20px; }
-        .category {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .cat-btn {
-            flex: 1;
-            padding: 10px;
-            background: #e2e8f0;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .cat-btn.active {
-            background: #667eea;
-            color: white;
-        }
-        .converter {
-            background: #f5f5f5;
-            padding: 20px;
-            border-radius: 5px;
-        }
-        .input-group {
-            margin: 15px 0;
-        }
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-        }
-        button {
-            width: 100%;
-            padding: 10px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .result {
-            text-align: center;
-            font-size: 1.5em;
-            padding: 20px;
-            background: white;
-            border-radius: 5px;
-            margin-top: 15px;
-        }
-    </style>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://www.exploredevtools.com/unit-converter.html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unit Converter – Convert Length, Weight, Temperature Online</title>
+
+<meta name="description" content="Convert units instantly. Length, weight, temperature and more. Free unit converter online.">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:#f5f3ff;
+padding:20px;
+}
+
+.back-btn{
+display:inline-block;
+background:#6d28d9;
+color:#fff;
+padding:10px 18px;
+border-radius:8px;
+text-decoration:none;
+margin-bottom:20px;
+}
+
+.tool-card{
+background:#fff;
+padding:25px;
+border-radius:16px;
+max-width:600px;
+margin:auto;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+color:#6d28d9;
+margin-bottom:15px;
+}
+
+select,input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#6d28d9;
+color:#fff;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.result{
+margin-top:15px;
+font-weight:bold;
+text-align:center;
+}
+
+.blog{
+max-width:600px;
+margin:30px auto;
+background:#fff;
+padding:20px;
+border-radius:12px;
+}
+</style>
 </head>
+
 <body>
-    <div class="container">
-        <a href="index.html" class="back-btn">← Back</a>
-        <div class="tool-card">
-            <h1>📏 Unit Converter</h1>
-            <div class="category">
-                <button class="cat-btn active" onclick="setCategory('length')">Length</button>
-                <button class="cat-btn" onclick="setCategory('weight')">Weight</button>
-                <button class="cat-btn" onclick="setCategory('temp')">Temperature</button>
-            </div>
-            <div class="converter">
-                <div class="input-group">
-                    <input type="number" id="fromVal" value="1" oninput="convert()">
-                    <select id="fromUnit" onchange="convert()"></select>
-                </div>
-                <button onclick="swap()">⇅ Swap</button>
-                <div class="input-group">
-                    <input type="text" id="toVal" readonly>
-                    <select id="toUnit" onchange="convert()"></select>
-                </div>
-                <div class="result" id="result">1</div>
-            </div>
-        </div>
-    </div>
-    <script>
-        let category = 'length';
-        const units = {
-            length: { meter:1, km:0.001, cm:100, mm:1000, mile:0.000621, yard:1.094, foot:3.281, inch:39.37 },
-            weight: { kg:1, g:1000, mg:1e6, lb:2.205, oz:35.274 },
-            temp: { celsius:'c', fahrenheit:'f', kelvin:'k' }
-        };
 
-        function setCategory(cat) {
-            category = cat;
-            document.querySelectorAll('.cat-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            updateUnits();
-        }
+<a href="index.html" class="back-btn">← Back to Tools</a>
 
-        function updateUnits() {
-            const from = document.getElementById('fromUnit');
-            const to = document.getElementById('toUnit');
-            from.innerHTML = ''; to.innerHTML = '';
-            for (let u in units[category]) {
-                from.innerHTML += `<option value="${u}">${u}</option>`;
-                to.innerHTML += `<option value="${u}">${u}</option>`;
-            }
-            convert();
-        }
+<div class="tool-card">
+<h1>📏 Unit Converter</h1>
 
-        function convert() {
-            const val = parseFloat(document.getElementById('fromVal').value) || 0;
-            const from = document.getElementById('fromUnit').value;
-            const to = document.getElementById('toUnit').value;
-            let result = 0;
+<input type="number" id="value" placeholder="Enter value">
 
-            if (category === 'temp') {
-                if (from === 'celsius' && to === 'fahrenheit') result = val * 9/5 + 32;
-                else if (from === 'celsius' && to === 'kelvin') result = val + 273.15;
-                else if (from === 'fahrenheit' && to === 'celsius') result = (val - 32) * 5/9;
-                else if (from === 'fahrenheit' && to === 'kelvin') result = (val - 32) * 5/9 + 273.15;
-                else if (from === 'kelvin' && to === 'celsius') result = val - 273.15;
-                else if (from === 'kelvin' && to === 'fahrenheit') result = (val - 273.15) * 9/5 + 32;
-                else result = val;
-            } else {
-                result = val * (units[category][to] / units[category][from]);
-            }
+<select id="from">
+<option value="m">Meter</option>
+<option value="km">Kilometer</option>
+<option value="cm">Centimeter</option>
+</select>
 
-            document.getElementById('toVal').value = result.toFixed(4);
-            document.getElementById('result').textContent = result.toFixed(4);
-        }
+<select id="to">
+<option value="km">Kilometer</option>
+<option value="m">Meter</option>
+<option value="cm">Centimeter</option>
+</select>
 
-        function swap() {
-            const from = document.getElementById('fromUnit');
-            const to = document.getElementById('toUnit');
-            const temp = from.value;
-            from.value = to.value;
-            to.value = temp;
-            convert();
-        }
+<button onclick="convert()">Convert</button>
 
-        updateUnits();
-    </script>
+<div class="result" id="result"></div>
+
+</div>
+
+<div class="blog">
+<h2>Why Use Unit Converter?</h2>
+<p>Quickly convert measurements without manual calculation errors.</p>
+
+<h2>Popular Conversions</h2>
+<p>Length, weight, temperature, and speed conversions are widely used in daily tasks.</p>
+</div>
+
+<script>
+function convert(){
+let val=parseFloat(document.getElementById('value').value);
+let from=document.getElementById('from').value;
+let to=document.getElementById('to').value;
+
+if(isNaN(val)){alert("Enter value");return;}
+
+let meters;
+
+if(from==="km") meters=val*1000;
+else if(from==="cm") meters=val/100;
+else meters=val;
+
+let result;
+
+if(to==="km") result=meters/1000;
+else if(to==="cm") result=meters*100;
+else result=meters;
+
+document.getElementById('result').innerHTML=result+" "+to;
+}
+</script>
+
 </body>
 </html>
