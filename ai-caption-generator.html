@@ -12,21 +12,31 @@ body {
   padding: 20px;
 }
 
+/* BACK BUTTON */
+.back-btn {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: white;
+  background: rgba(255,255,255,0.2);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+
+/* CONTAINER */
 .container {
   max-width: 700px;
   margin: auto;
   background: white;
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
 }
 
-/* 🔥 AI TITLE */
+/* TITLE */
 .title {
   text-align: center;
-  font-size: 28px;
   color: #6c5ce7;
-  margin-bottom: 20px;
 }
 
 /* INPUT */
@@ -35,7 +45,7 @@ textarea {
   height: 120px;
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  margin-top: 10px;
 }
 
 /* BUTTON */
@@ -43,66 +53,66 @@ button {
   width: 100%;
   padding: 12px;
   margin-top: 10px;
-  border: none;
-  border-radius: 8px;
   background: #6c5ce7;
   color: white;
-  font-size: 16px;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
 }
 
-/* CAPTION CARDS */
-.caption-card {
-  background: #f8f9ff;
+/* CARDS */
+.card {
+  background: #f4f6ff;
   padding: 15px;
   margin-top: 15px;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
-.caption-card button {
+.copy-btn {
   margin-top: 10px;
-  padding: 6px 10px;
-  width: auto;
-  font-size: 14px;
+  background: #22c55e;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  color: white;
 }
 
 /* LOADING */
 .loading {
   text-align: center;
   margin-top: 10px;
-  color: #555;
 }
 </style>
 </head>
 
 <body>
 
+<a href="index.html" class="back-btn">← Back to Home</a>
+
 <div class="container">
 
 <h2 class="title">🤖 AI Caption Generator</h2>
 
-<textarea id="input" placeholder="Enter your topic (e.g. Car for Mathura)"></textarea>
+<textarea id="input" placeholder="Enter topic (Car for Mathura)"></textarea>
 
-<button onclick="generateCaption()">🚀 Generate Viral Captions</button>
+<button onclick="generate()">🚀 Generate Captions</button>
 
 <div class="loading" id="loading"></div>
-
 <div id="output"></div>
 
 </div>
 
 <script>
 
-async function generateCaption() {
+async function generate() {
   const text = document.getElementById("input").value;
 
   if (!text) {
-    alert("Enter topic first!");
+    alert("Enter topic");
     return;
   }
 
-  document.getElementById("loading").innerText = "Generating viral captions... 🔥";
+  document.getElementById("loading").innerText = "Generating... 🔥";
   document.getElementById("output").innerHTML = "";
 
   try {
@@ -115,32 +125,35 @@ async function generateCaption() {
     });
 
     const data = await res.json();
+    console.log(data); // debug
 
-    // 🔥 Split captions
-    const captions = data.captions.split("Caption");
+    if (!res.ok) {
+      throw new Error(data.error || "API Error");
+    }
 
     document.getElementById("loading").innerText = "";
 
-    document.getElementById("output").innerHTML =
-      captions
-        .filter(c => c.trim() !== "")
-        .map(c => `
-          <div class="caption-card">
-            <p>${c.trim()}</p>
-            <button onclick="copyText(this)">📋 Copy</button>
-          </div>
-        `).join("");
+    const captions = data.captions.split("\n").filter(c => c.trim() !== "");
 
-  } catch (error) {
-    document.getElementById("loading").innerText = "Error generating captions ❌";
+    document.getElementById("output").innerHTML =
+      captions.map(c => `
+        <div class="card">
+          ${c}
+          <br>
+          <button class="copy-btn" onclick="copy(this)">Copy</button>
+        </div>
+      `).join("");
+
+  } catch (err) {
+    document.getElementById("loading").innerText = "❌ API Error";
+    console.error(err);
   }
 }
 
-/* COPY FUNCTION */
-function copyText(btn) {
-  const text = btn.previousElementSibling.innerText;
+function copy(btn) {
+  const text = btn.parentElement.innerText.replace("Copy", "");
   navigator.clipboard.writeText(text);
-  btn.innerText = "✅ Copied!";
+  btn.innerText = "Copied!";
 }
 
 </script>
